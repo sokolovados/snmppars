@@ -9,16 +9,14 @@ def allvlangen(unit): # на входе должен получать файл �
     regexallvlan = (r'(2.17.7.1.4.3.1.1.)(\d+)')
     for line in unit:
         match = re.search(regexallvlan,line)
-        #print(match.group(2))
         allvlan.append(match.group(2)) 
     return(allvlan) # список vlan
 
 def untagged(unit,unit1): #на входе получает snmp вывод untagged портов, формирует словарь port:vlan
-    untaggedvlan = OrderedDict()
+    untaggedvlan = defaultdict(list)
     taggedvlan = defaultdict(list)
     regexuntagged = (r'(2.17.7.1.4.3.1.4.)(\d+)( = 0x)(\w+)')
     regexuntagged_2 = (r'(2.17.7.1.4.3.1.2.)(\d+)( = 0x)(\w+)')
-    #print(unit)
     for line,line1 in zip(unit,unit1):
         #________________________________#
         binresult = ''
@@ -26,10 +24,17 @@ def untagged(unit,unit1): #на входе получает snmp вывод unta
         bin_tag = ''
         match = re.search(regexuntagged,line)
         match_All = re.search(regexuntagged_2,line1)
-        vlan = match.group(2) # untagged ports
-        ports =match.group(4)  
-        Vlan_All = match_All.group(2) # all ports
-        Ports_All = match_All.group(4)
+        if match:
+            vlan = match.group(2) # untagged portsi
+            ports = match.group(4)  
+        else:
+            break
+        if match_All:
+
+            Vlan_All = match_All.group(2) # all ports
+            Ports_All = match_All.group(4)
+        else:
+            pass
         #_________________________________#
         ######## получает двоичное значение по untag портам#
         for hexsymbol in ports:
@@ -37,7 +42,7 @@ def untagged(unit,unit1): #на входе получает snmp вывод unta
             while int(len(hexsymbol))<4:
                 hexsymbol= '0'+hexsymbol
             binresult = binresult+hexsymbol
-
+        print(binresult)
         ######## получает двоичное занчение all_ports с untag портами#
         for hexsymbol_all in Ports_All:
             hexsymbol_all = (bin(int(hexsymbol_all,16)))[2:]
@@ -50,12 +55,13 @@ def untagged(unit,unit1): #на входе получает snmp вывод unta
                 bin_tag = bin_tag + '0'
             else:
                 bin_tag =bin_tag + bin_all
-        binresult = (bin(int(((match.group(4))[:-3]),16))[2:])
+       # binresult = (bin(int(((match.group(4))[:-3]),16))[2:])
+        
        ##формирует untag словарь## 
         num = 1
         for element in binresult:
             if element is '1':
-                untaggedvlan['port '+str(num)] = vlan
+                (untaggedvlan['port '+str(num)]).append(vlan)
                 num += 1
             else:
                 num +=1       
@@ -67,23 +73,6 @@ def untagged(unit,unit1): #на входе получает snmp вывод unta
                 num2 += 1
             else:
                 num2 +=1
-    itemlist = []    
-    for key in taggedvlan.keys():
-        itemlist = taggedvlan[key]
-        for num in range(0,(len(itemlist))):
-            i = 0
-            if (int(itemlist[num])+1) ==  int(itemlist[num+1]):
-                while num+i+1<(len(itemlist)-1) and (int(itemlist[num+i])+1) == int(itemlist[num+i+1]) :
-                    itemlist.pop(num+i) 
-                    i += 1
-                    
-                else:
-                    second = int(itemlist[num+i])
-                    print(second)
-            else:
-                pass
-#        print(itemlist)
-#        print(taggedvlan[key])
 
     return(untaggedvlan,taggedvlan)
      ##################
