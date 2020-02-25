@@ -1,5 +1,5 @@
 from snmpVLAN import snmp
-
+from pprint import pprint
 from collections import OrderedDict,defaultdict
 import re
 
@@ -15,6 +15,7 @@ def allvlangen(unit): # на входе должен получать файл �
 def untagged(unit,unit1): #на входе получает snmp вывод untagged портов, формирует словарь port:vlan
     untaggedvlan = defaultdict(list)
     taggedvlan = defaultdict(list)
+    vlanport = {}
     regexuntagged = (r'(2.17.7.1.4.3.1.4.)(\d+)( = 0x)(\w+)')
     regexuntagged_2 = (r'(2.17.7.1.4.3.1.2.)(\d+)( = 0x)(\w+)')
     for line,line1 in zip(unit,unit1):
@@ -42,7 +43,6 @@ def untagged(unit,unit1): #на входе получает snmp вывод unta
             while int(len(hexsymbol))<4:
                 hexsymbol= '0'+hexsymbol
             binresult = binresult+hexsymbol
-        print(binresult)
         ######## получает двоичное занчение all_ports с untag портами#
         for hexsymbol_all in Ports_All:
             hexsymbol_all = (bin(int(hexsymbol_all,16)))[2:]
@@ -55,13 +55,12 @@ def untagged(unit,unit1): #на входе получает snmp вывод unta
                 bin_tag = bin_tag + '0'
             else:
                 bin_tag =bin_tag + bin_all
-       # binresult = (bin(int(((match.group(4))[:-3]),16))[2:])
         
-       ##формирует untag словарь## 
+        ##формирует untag словарь## 
         num = 1
         for element in binresult:
             if element is '1':
-                (untaggedvlan['port '+str(num)]).append(vlan)
+                (untaggedvlan[str(num)]).append(vlan)
                 num += 1
             else:
                 num +=1       
@@ -69,15 +68,18 @@ def untagged(unit,unit1): #на входе получает snmp вывод unta
         num2 = 1    
         for element in bin_tag:
             if element is '1':
-                (taggedvlan['port '+str(num2)]).append(vlan)
+                (taggedvlan[str(num2)]).append(vlan)
                 num2 += 1
             else:
                 num2 +=1
-
-    return(untaggedvlan,taggedvlan)
+       ##формирует общий словарь по портам ! ДОПИСАТЬ range ! 
+        for key in untaggedvlan:
+            vlanport[key] = {'untag':(str(untaggedvlan[key])).strip("[]'")}
+        for key in taggedvlan:
+            vlanport[key].update({'tagged': (str(taggedvlan[key])).strip("[]'")})
+        
+    return(vlanport)
      ##################
-
-
-
-
     
+
+
