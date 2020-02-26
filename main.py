@@ -10,10 +10,9 @@ listofvlan = allvlangen(snmpout1) #все вланы на коммуте
 
 snmpout2 = snmp('10.220.43.168','nfrnjrfr','.1.3.6.1.2.1.17.7.1.4.3.1.4')
 snmpout3 = snmp('10.220.43.168','nfrnjrfr','.1.3.6.1.2.1.17.7.1.4.3.1.2')
-
-vlanport = untagged(snmpout2,snmpout3)
+sysdescr = snmp('10.220.43.168','nfrnjrfr','1.3.6.1.2.1.1.1')
+vlanport = untagged(snmpout2,snmpout3,sysdescr)
 pprint(vlanport)
-
 env = Environment(loader=FileSystemLoader('/home/python_projects/snmppars'))
 template = env.get_template('template.txt')
 with open('result.txt','w') as f:

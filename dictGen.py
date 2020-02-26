@@ -12,10 +12,11 @@ def allvlangen(unit): # на входе должен получать файл �
         allvlan.append(match.group(2)) 
     return(allvlan) # список vlan
 
-def untagged(unit,unit1): #на входе получает snmp вывод untagged портов, формирует словарь port:vlan
+def untagged(unit,unit1,sysdescr): #на входе получает snmp вывод untagged портов, формирует словарь port:vlan
     untaggedvlan = defaultdict(list)
     taggedvlan = defaultdict(list)
     vlanport = {}
+    listofport = []
     regexuntagged = (r'(2.17.7.1.4.3.1.4.)(\d+)( = 0x)(\w+)')
     regexuntagged_2 = (r'(2.17.7.1.4.3.1.2.)(\d+)( = 0x)(\w+)')
     for line,line1 in zip(unit,unit1):
@@ -73,13 +74,37 @@ def untagged(unit,unit1): #на входе получает snmp вывод unta
             else:
                 num2 +=1
        ##формирует общий словарь по портам ! ДОПИСАТЬ range ! 
-        for key in untaggedvlan:
-            vlanport[key] = {'untag':(str(untaggedvlan[key])).strip("[]'")}
-        for key in taggedvlan:
-            vlanport[key].update({'tagged': (str(taggedvlan[key])).strip("[]'")})
-        
+    for key in untaggedvlan.keys():
+        vlanport.update({key : str(untaggedvlan[key]).strip("[]'")})
+    for key in taggedvlan.keys():
+        vlanport.update({key+' tg' : str(taggedvlan[key]).strip("[]'")})
+   
+    ##добавляем в словарь кол-ва портов##
+    modelRE = (r'(DES-)(\d+)(-?)(\d+)' r'| S(\d+)')
+    for element in sysdescr:
+        print(element)
+        model = re.search(modelRE,element)
+        model = model.group()
+        if '1210' in model:
+            ports = (model.split('-'))[2]
+            print('1210')
+        elif '1228'  in model:
+            ports = '28'
+            print('1228')
+        elif '3200' in model:
+            ports = (model.split('-'))[2]
+            print('3200')
+        elif '2326' in model:
+            ports = '28'
+            print('2326')
+        elif '2352' in model:
+            ports = '52'
+            print('2352')        
+    
+    vlanport.update({'num':int(ports)})
     return(vlanport)
-     ##################
+
+    ##################
     
 
 

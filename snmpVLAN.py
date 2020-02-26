@@ -19,6 +19,6 @@ def snmp(ip,com,mib):
             for varBind in varBinds:
                 result.append(' = '.join([x.prettyPrint() for x in varBind]))
     return(result)
-#res = snmpout1 = snmp('10.220.43.168','nfrnjrfr','.1.3.6.1.2.1.17.7.1.4.3.1.4')
-
+#res = snmp('10.220.43.168','nfrnjrfr','1.3.6.1.2.1.1.1')
+#print(res)
 
