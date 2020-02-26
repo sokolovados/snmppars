@@ -1,5 +1,7 @@
-{%for port int ports.keys()%}
+{%for port in vlanport.keys()%}
 interface gigaethernet 1/0/{{port}}
-{%if %} 
-port hybrid vlan{{user_vlan}} untagged
-port hybrid vlan pvid{{user_vlan}} 
+{% if vlanport[key]['tagged'] %} 
+port hybrid vlan{{vlanport[key]['tagged'}} untagged
+port hybrid vlan pvid{{vlanport[key]['tagged'}} 
+
+
