@@ -75,9 +75,9 @@ def untagged(unit,unit1,sysdescr): #на входе получает snmp выв
                 num2 +=1
        ##формирует общий словарь по портам ! ДОПИСАТЬ range ! 
     for key in untaggedvlan.keys():
-        vlanport.update({key : str(untaggedvlan[key]).strip("[]'")})
+        vlanport.update({str(key) : ((str(untaggedvlan[key]).strip("[]'").replace("'",'')))})
     for key in taggedvlan.keys():
-        vlanport.update({key+' tg' : str(taggedvlan[key]).strip("[]'")})
+        vlanport.update({str(key)+'_tg' : ((str(taggedvlan[key]).strip("[]'").replace("'",'').replace(' ','')))})
    
     ##добавляем в словарь кол-ва портов##
     modelRE = (r'(DES-)(\d+)(-?)(\d+)' r'| S(\d+)')
