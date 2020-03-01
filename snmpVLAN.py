@@ -13,7 +13,8 @@ def snmp(ip,com,mib):
             ObjectType(ObjectIdentity(mib)),
             lexicographicMode=False):
         if errorIndication or errorStatus:
-            print(errorIndication or errorStatus)
+            print(ip+ ' not response')
+            result = False
             break
         else:
             for varBind in varBinds:

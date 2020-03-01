@@ -1,7 +1,139 @@
-{%for port in range (1,vlanport['num'])%}
-interface gigaethernet 1/0/{{port}}
-port hybryd vlan {{vlanport[port|string]}}
-{%if vlanport[(port|string)+'_tg']%}
-port hybryd vlan {{vlanport[(port|string)+'_tg']}} tagged
-{%endif%}
-{%endfor%}
+hostname {{hostname}}
+vlan {{mgmt_vlan | join(",")}}
+alias admin_vlan
+vlan {{user_vlan | join(",")}}
+alias net_{{user_vlan | join(",")}}
+vlan {{catv_vlan}}
+alias catv_{{catv_vlan}}
+exit
+
+username admin password ,fpfhfytn
+username super password ,fpfhfytn
+
+management acl 10.96.9.0/24 telnet
+management acl 10.96.9.0/24 snmp
+management acl 10.96.9.0/24 ssh
+management acl 10.96.9.0/24 tftp
+management acl 10.222.0.0/18 telnet
+management acl 10.222.0.0/18 snmp
+management acl 10.222.0.0/18 ssh
+management acl 10.222.0.0/18 tftp
+management acl enable
+exit
+
+dhcp-snooping start
+
+igmp-snooping start
+igmp-snooping mvlan {{catv_vlan}}
+igmp-snooping forwarding-mode ip
+igmp-snooping multicast-vlan enable
+igmp-snooping multicast user-vlan {{user_vlan | join(",")}},{{catv_vlan}}
+exit
+
+stp
+stp mode rstp
+stp transmit-limit 2
+stp bpdu-guard enable
+stp trap enable
+exit
+
+interface vlan {{mgmt_vlan | join(",")}}
+ip address {{net_details['net_details_ip_prefix']}}
+exit
+
+ip route-static 0.0.0.0 0.0.0.0 {{net_details['net_details_def_gateway']}}
+
+snmp location {{Address}}
+snmp community infocomm002 ro view internet
+snmp community Dofs_OAS_mru_2019 ro view internet
+snmp community infocomm003 rw view internet
+
+ntp
+oncesync enable
+client update-interval 4
+stratum 3
+ntp unicast-server 10.222.50.233 version 3
+exit
+
+aaa
+tacacs-server tacacs ip-address 10.96.9.76 key KGN_TACACS
+tacacs-server tacacs single-connection enable
+tacacs-server tacacs timeout 5
+server-group tacacs+ tacacs-server tacacs
+aaa authentication login method m1 server-group tacacs+
+aaa authentication  enable method m2 server-group tacacs+ local
+aaa authorization  method m3 server-group tacacs+ local
+aaa account login method m4 server-group tacacs+ local
+exit
+
+lldp reinit-delay 5
+
+line vty 1 5
+login authentication aaa method m1 auth-type pap
+login account aaa method m4
+enable authentication aaa method m2
+login authorization aaa method m3
+color green
+exit
+
+interface group 1/0/1-1/0/23
+flow-control enable
+stp disable
+no port hybrid vlan 1
+port hybrid vlan {{user_vlan | join(",")}} untagged
+port hybrid pvid {{user_vlan | join(",")}}
+mac-limit 0 action drop
+port-security enable
+port-security maximum 5
+igmp-snooping enable
+dhcp-snooping enable
+dhcp-snooping option82 enable
+dhcp-snooping option82 circuit-id format common
+dhcp-snooping check mac-address enable
+dhcp-snooping check user-bind enable
+dhcp-snooping relay-agent-ip {{net_details['net_details_ip']}} enable
+dhcp-snooping relay server-ip {{ipdhcp}}
+dhcp-snooping relay server-ip {{net_details['net_details_ip']}} enable
+loop-check enable
+loop-check action shutdown
+join port-isolate group 1
+ip source check user-bind enable
+ip source check user-bind alarm enable
+ip source check user-bind alarm threshold 10
+storm-control multicast percent 5
+storm-control broadcast percent 5
+storm-control dlf percent 5
+
+interface gigaethernet 1/0/24
+stp disable
+port link-type trunk
+no port trunk allow-pass vlan 1
+port trunk allow-pass vlan {{other_user_vlans | join(",")}} 
+igmp-snooping enable
+dhcp-snooping enable
+dhcp-snooping trust
+lldp admin-status rx-tx
+lldp notification enable
+lldp management-address {{net_details['net_details_ip']}} enable
+!
+interface group 1/1/1-1/2/2
+stp disable
+port link-type trunk
+no port trunk allow-pass vlan 1
+port trunk allow-pass vlan {{other_user_vlans | join(",")}} 
+igmp-snooping enable
+dhcp-snooping enable
+dhcp-snooping trust
+lldp admin-status rx-tx
+lldp notification enable
+lldp management-address {{net_details['net_details_ip']}} enable
+
+interface xgigaethernet 1/2/1
+transceiver type 1000BASE-X
+y
+
+interface xgigaethernet 1/2/2
+transceiver type 1000BASE-X
+y
+
+

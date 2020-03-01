@@ -12,7 +12,7 @@ def allvlangen(unit): # на входе должен получать файл �
         allvlan.append(match.group(2)) 
     return(allvlan) # список vlan
 
-def untagged(unit,unit1,sysdescr): #на входе получает snmp вывод untagged портов, формирует словарь port:vlan
+def untagged(unit,unit1,sysdescr,ip): #на входе получает snmp вывод untagged портов, формирует словарь port:vlan
     untaggedvlan = defaultdict(list)
     taggedvlan = defaultdict(list)
     vlanport = {}
@@ -82,26 +82,20 @@ def untagged(unit,unit1,sysdescr): #на входе получает snmp выв
     ##добавляем в словарь кол-ва портов##
     modelRE = (r'(DES-)(\d+)(-?)(\d+)' r'| S(\d+)')
     for element in sysdescr:
-        print(element)
         model = re.search(modelRE,element)
         model = model.group()
         if '1210' in model:
             ports = (model.split('-'))[2]
-            print('1210')
         elif '1228'  in model:
             ports = '28'
-            print('1228')
         elif '3200' in model:
             ports = (model.split('-'))[2]
-            print('3200')
         elif '2326' in model:
             ports = '28'
-            print('2326')
         elif '2352' in model:
             ports = '52'
-            print('2352')        
     
-    vlanport.update({'num':int(ports)})
+    vlanport.update({'num':(int(ports)+1)})
     return(vlanport)
 
     ##################
