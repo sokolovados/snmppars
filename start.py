@@ -1,6 +1,6 @@
 def start():
    # Model = input('Какой шаблон использовать(28,52): ')
-    print("Ip заменяемых коммутаторов. Ctrl-D  to save it.")
+    print("Ip заменяемых коммутаторов в формате (X.X.X.X/X). Ctrl-D для сохранения ввода .")
     contents = []
     while True:
         try:

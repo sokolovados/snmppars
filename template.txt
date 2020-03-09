@@ -1,4 +1,4 @@
-hostname {{hostname}}
+hostname {{vlanport[hostname]}}
 vlan {{mgmt_vlan | join(",")}}
 alias admin_vlan
 vlan {{user_vlan | join(",")}}

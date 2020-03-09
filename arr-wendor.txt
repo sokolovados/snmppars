@@ -1,0 +1,1108 @@
+<?php
+$wendor = array();
+$wendor_oid = array();
+$vlan_name_oid = array();
+$vlan_mgmt_oid = array();
+$vlan_port_oid = array();
+$fdb_oid = array();
+$fw = array();
+$glob_status = array();
+$port_status = array();
+$stp_port_state = array();
+$mac_root = array();
+$port_root = array();
+$stp_protocol = array();
+
+$port_ifOperStatus = array();
+$port_ifInErrors = array();
+$port_ifOutErrors = array();
+$port_sysPortCtrlSpeed = array();
+$port_lbd_global_status = array();
+$port_lbd_port_status = array();
+$port_lbd_loop_status = array();
+$port_ifType = array();
+
+#Huawei s2326
+$wendor_oid[0]="SNMPv2-SMI::enterprises.2011.2.23.92";
+$wendor[0]="s2326";
+$stp_port_state[0]="SNMPv2-SMI::mib-2.17.2.15.1.3";
+$port_status[0]="SNMPv2-SMI::mib-2.17.2.15.1.4";
+$mac_root[0]=".1.3.6.1.2.1.17.2.5.0";
+$port_root[0]=".1.3.6.1.2.1.17.2.7.0";
+$stp_protocol[0]="1.3.6.1.4.1.2011.5.25.42.4.1.2.0";
+$glob_status[0]="1.3.6.1.4.1.2011.5.25.42.4.1.1.0";
+$vlan_name_oid[0] = "SNMPv2-SMI::enterprises.2011.5.25.42.3.1.1.1.1.2";
+$vlan_port_oid[0]="SNMPv2-SMI::mib-2.17.7.1.4.3.1";
+//$fdb_oid[0]="SNMPv2-SMI::enterprises.2011.5.25.42.2.1.33.1.13";
+$fdb_oid[0]="SNMPv2-SMI::enterprises.2011.5.25.42.2.1.3.1.4";
+$fdb_oid_acc[0]="SNMPv2-SMI::enterprises.2011.5.25.42.2.1.32.1.13";
+$fw[0]="SNMPv2-SMI::enterprises.2011.5.25.19.1.8.5.1.1";
+#$fw_all[0]="1.3.6.1.4.1.2011.5.25.19.1.4.2.1";
+#$path_all[0]="1.3.6.1.4.1.2011.5.25.19.1.8.2.1";
+#$fw_key[0]="1.3.6.1.4.1.2011.5.25.19.1.2.1.1.3.0";
+#$path_key[0]="1.3.6.1.4.1.2011.5.25.19.1.2.1.1.6.0";
+$fw_all[0]="SNMPv2-SMI::enterprises.2011.5.25.19.1.4.2.1";
+$path_all[0]="SNMPv2-SMI::enterprises.2011.5.25.19.1.8.2.1";
+$fw_key[0]="SNMPv2-SMI::enterprises.2011.5.25.19.1.2.1.1.3.0";
+$path_key[0]="SNMPv2-SMI::enterprises.2011.5.25.19.1.2.1.1.6.0";
+$free_flash[0]="SNMPv2-SMI::enterprises.2011.6.9.1.1.4.1.1.5.1.1";
+$ftp_2[0] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.2";
+$ftp_3[0] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.3";
+$ftp_4[0] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.4";
+$ftp_5[0] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.5";
+$ftp_6[0] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.6";
+$ftp_7[0] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.7";
+$ftp_8[0] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.8";
+$ftp_12[0] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.12";
+$ftp_status[0] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.9";
+$oid_startup_fw[0] = "SNMPv2-SMI::enterprises.2011.5.25.19.1.3.3.1.4.0";
+$oid_startup_path[0] = "SNMPv2-SMI::enterprises.2011.5.25.19.1.3.3.1.10.0";
+#$oid_reboot[0] = "1.3.6.1.4.1.2011.5.25.19.1.3.4.0";
+$oid_reboot[0] = "1.3.6.1.4.1.2011.5.25.19.1.3.8.0";
+$file_all[0] = "SNMPv2-SMI::enterprises.2011.6.9.1.1.4.2.1.1";
+$port_ifOperStatus[0] = "ifOperStatus";
+$port_ifInErrors[0] = "ifInErrors";
+$port_ifOutErrors[0] = "ifOutErrors";
+$port_ifType[0] = "ifType";
+$port_ifDescr[0] = "ifDescr";
+$port_lbd_port_status[0] = "SNMPv2-SMI::enterprises.2011.5.25.174.1.1.7.1.3";
+$port_lbd_loop_status[0] = "SNMPv2-SMI::enterprises.2011.5.25.174.1.1.7.1.6";
+$port_sysPortCtrlSpeed[0] = "EtherLike-MIB::dot3StatsDuplexStatus";
+$traf_seg[0]="SNMPv2-SMI::enterprises.2011.5.25.42.1.1.1.3.1.31";
+$traf_seg_index_port[0]="1.3.6.1.4.1.2011.5.25.42.1.1.1.3.1.2";
+
+# Huawei s2352
+$wendor_oid[1]="SNMPv2-SMI::enterprises.2011.2.23.94";
+$wendor[1]="s2352";
+$stp_port_state[1]="SNMPv2-SMI::mib-2.17.2.15.1.3";
+$port_status[1]="SNMPv2-SMI::mib-2.17.2.15.1.4";
+$mac_root[1]=".1.3.6.1.2.1.17.2.5.0";
+$port_root[1]=".1.3.6.1.2.1.17.2.7.0";
+$stp_protocol[1]="1.3.6.1.4.1.2011.5.25.42.4.1.2.0";
+$glob_status[1]="1.3.6.1.4.1.2011.5.25.42.4.1.1.0";
+$vlan_name_oid[1] = "SNMPv2-SMI::enterprises.2011.5.25.42.3.1.1.1.1.2";
+$vlan_port_oid[1]="SNMPv2-SMI::mib-2.17.7.1.4.3.1";
+$fdb_oid[1]="SNMPv2-SMI::enterprises.2011.5.25.42.2.1.3.1.4";
+$fdb_oid_acc[1]="SNMPv2-SMI::enterprises.2011.5.25.42.2.1.32.1.13";
+$fw_all[1]="SNMPv2-SMI::enterprises.2011.5.25.19.1.4.2.1";
+$path_all[1]="SNMPv2-SMI::enterprises.2011.5.25.19.1.8.2.1";
+$fw_key[1]="SNMPv2-SMI::enterprises.2011.5.25.19.1.2.1.1.3.0";
+$path_key[1]="SNMPv2-SMI::enterprises.2011.5.25.19.1.2.1.1.6.0";
+$free_flash[1]="SNMPv2-SMI::enterprises.2011.6.9.1.1.4.1.1.5.1.1";
+$ftp_2[1] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.2";
+$ftp_3[1] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.3";
+$ftp_4[1] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.4";
+$ftp_5[1] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.5";
+$ftp_6[1] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.6";
+$ftp_7[1] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.7";
+$ftp_8[1] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.8";
+$ftp_12[1] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.12";
+$ftp_status[1] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.9";
+$oid_startup_fw[1] = "SNMPv2-SMI::enterprises.2011.5.25.19.1.3.3.1.4.0";
+$oid_startup_path[1] = "SNMPv2-SMI::enterprises.2011.5.25.19.1.3.3.1.10.0";
+$oid_reboot[1] = "1.3.6.1.4.1.2011.5.25.19.1.3.8.0";
+$file_all[1] = "SNMPv2-SMI::enterprises.2011.6.9.1.1.4.2.1.1";
+$port_ifOperStatus[1] = "ifOperStatus";
+$port_ifInErrors[1] = "ifInErrors";
+$port_ifOutErrors[1] = "ifOutErrors";
+$port_ifType[1] = "ifType";
+$port_ifDescr[1] = "ifDescr";
+$port_lbd_port_status[1] = "SNMPv2-SMI::enterprises.2011.5.25.174.1.1.7.1.3";
+$port_lbd_loop_status[1] = "SNMPv2-SMI::enterprises.2011.5.25.174.1.1.7.1.6";
+$port_sysPortCtrlSpeed[1] = "EtherLike-MIB::dot3StatsDuplexStatus"; 
+$traf_seg[1]="SNMPv2-SMI::enterprises.2011.5.25.42.1.1.1.3.1.31";
+$traf_seg_index_port[1]="1.3.6.1.4.1.2011.5.25.42.1.1.1.3.1.2";
+
+
+#Huawei s2328
+$wendor_oid[2]="SNMPv2-SMI::enterprises.2011.2.23.229";
+$wendor[2]="s2328";
+$stp_port_state[2]="SNMPv2-SMI::mib-2.17.2.15.1.3";
+$port_status[2]="SNMPv2-SMI::mib-2.17.2.15.1.4";
+$mac_root[2]=".1.3.6.1.2.1.17.2.5.0";
+$port_root[2]=".1.3.6.1.2.1.17.2.7.0";
+$stp_protocol[2]="1.3.6.1.4.1.2011.5.25.42.4.1.2.0";
+$glob_status[2]="1.3.6.1.4.1.2011.5.25.42.4.1.1.0";
+$vlan_name_oid[2] = "SNMPv2-SMI::enterprises.2011.5.25.42.3.1.1.1.1.2";
+$vlan_port_oid[2]="SNMPv2-SMI::mib-2.17.7.1.4.3.1";
+$fdb_oid[2]="SNMPv2-SMI::enterprises.2011.5.25.42.2.1.3.1.4";
+$fdb_oid_acc[2]="SNMPv2-SMI::mib-2.17.4.3.1.2";
+//$fdb_oid_acc2[2]="SNMPv2-SMI::enterprises.2011.5.25.42.2.1.32.1.13";
+#$fw[2]="SNMPv2-SMI::enterprises.2011.5.25.19.1.8.5.1.1";
+$fw_all[2]="SNMPv2-SMI::enterprises.2011.5.25.19.1.4.2.1";
+$path_all[2]="SNMPv2-SMI::enterprises.2011.5.25.19.1.8.2.1";
+$fw_key[2]="SNMPv2-SMI::enterprises.2011.5.25.19.1.2.1.1.3.0";
+$path_key[2]="SNMPv2-SMI::enterprises.2011.5.25.19.1.2.1.1.6.0";
+$free_flash[2]="SNMPv2-SMI::enterprises.2011.6.9.1.1.4.1.1.5.1.1";
+$ftp_2[2] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.2";
+$ftp_3[2] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.3";
+$ftp_4[2] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.4";
+$ftp_5[2] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.5";
+$ftp_6[2] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.6";
+$ftp_7[2] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.7";
+$ftp_8[2] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.8";
+$ftp_12[2] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.12";
+$ftp_status[2] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.9";
+$oid_startup_fw[2] = "SNMPv2-SMI::enterprises.2011.5.25.19.1.3.3.1.4.0";
+$oid_startup_path[2] = "SNMPv2-SMI::enterprises.2011.5.25.19.1.3.3.1.10.0";
+$oid_reboot[2] = "1.3.6.1.4.1.2011.5.25.19.1.3.8.0";
+$file_all[2] = "SNMPv2-SMI::enterprises.2011.6.9.1.1.4.2.1.1";
+$port_ifOperStatus[2] = "ifOperStatus";
+$port_ifInErrors[2] = "ifInErrors";
+$port_ifOutErrors[2] = "ifOutErrors";
+$port_ifType[2] = "ifType";
+$port_ifDescr[2] = "ifDescr";
+$port_lbd_port_status[2] = "SNMPv2-SMI::enterprises.2011.5.25.174.1.1.7.1.3";
+$port_lbd_loop_status[2] = "SNMPv2-SMI::enterprises.2011.5.25.174.1.1.7.1.6";
+$port_sysPortCtrlSpeed[2] = "EtherLike-MIB::dot3StatsDuplexStatus"; 
+$traf_seg[2]="SNMPv2-SMI::enterprises.2011.5.25.42.1.1.1.3.1.31";
+$traf_seg_index_port[2]="1.3.6.1.4.1.2011.5.25.42.1.1.1.3.1.2";
+
+
+$wendor_oid[3]="SNMPv2-SMI::enterprises.32108.1.7";
+$wendor[3]="SDO-3002";
+
+$wendor_oid[4]="SNMPv2-SMI::enterprises.17409.1";
+$wendor[4]="OR-862";
+
+$wendor_oid[5]="SNMPv2-SMI::enterprises.32108.1.8";
+$wendor[5]="SDO-3001";
+
+#DES-1210-28
+$wendor_oid[6]="SNMPv2-SMI::enterprises.171.10.75.15.2";
+$wendor[6]="DES-1210-28";
+$vlan_name_oid[6]="SNMPv2-SMI::enterprises.171.10.75.15.2.7.6.1.1";
+$vlan_mgmt_oid[6]="SNMPv2-SMI::enterprises.171.10.75.15.2.7.3.0";
+$vlan_port_oid[6]=".1.3.6.1.4.1.171.10.75.15.2.7.6.1";
+$fdb_oid[6]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+$fw[6]="SNMPv2-SMI::mib-2.16.19.2.0";
+$glob_status[6]=".1.3.6.1.4.1.171.10.75.15.2.6.1.1.0";
+$port_status[6]="SNMPv2-SMI::enterprises.171.10.75.15.2.6.2.1.2";
+$stp_port_state[6]="SNMPv2-SMI::enterprises.171.10.75.15.2.6.2.1.12";
+$mac_root[6]=".1.3.6.1.4.1.171.10.75.15.2.6.1.9.0";
+$port_root[6]=".1.3.6.1.4.1.171.10.75.15.2.6.1.13.0";
+$stp_protocol[6]=".1.3.6.1.4.1.171.10.75.15.2.6.1.2.0";
+$port_ifOperStatus[6] = "ifOperStatus";
+$port_ifInErrors[6] = "ifInErrors";                  
+$port_ifOutErrors[6] = "ifOutErrors"; 
+$port_ifType[6] = "ifType";                 
+$port_sysPortCtrlSpeed[6] = ".1.3.6.1.4.1.171.10.75.15.2.1.13.1.3";            
+$port_lbd_global_status[6] = ".1.3.6.1.4.1.171.10.75.15.2.17.1.0";           
+$port_lbd_port_status[6] = ".1.3.6.1.4.1.171.10.75.15.2.17.5.1.2";             
+$port_lbd_loop_status[6] = ".1.3.6.1.4.1.171.10.75.15.2.17.5.1.3";
+#$swMultiImageVersion[6]="1.3.6.1.4.1.171.10.75.15.2.1.31.1.1.0";
+#$tftp_agentBscSwFileAddr[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.1.0";
+#$tftp_agentBscSwFile[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.4.0";
+#$tftp_agentBscSwFileLoadType[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.5.0";
+#$tftp_agentBscSwFileCtrlID[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.2.0";
+#$agentStatusFileTransfer[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.6.0";
+$tftp_agentBscSwFileAddr[6]="1.3.6.1.4.1.171.10.75.15.2.3.1.0";
+$tftp_agentBscSwFile[6]="1.3.6.1.4.1.171.10.75.15.2.3.2.0";
+$tftp_agentBscSwFileLoadType[6]="1.3.6.1.4.1.171.10.75.15.2.3.3.0";
+$agentStatusFileTransfer[6]="1.3.6.1.4.1.171.10.75.15.2.3.4.0";
+
+$oid_reboot[6]=".1.3.6.1.4.1.171.10.75.15.2.1.9.0";
+#
+
+$wendor_oid[7]="SNMPv2-SMI::enterprises.171.10.76.28.1";
+$wendor[7]="DGS-1210-28/ME";
+
+$wendor_oid[8]="SNMPv2-SMI::enterprises.9.1.217";
+$wendor[8]="Catalyst-2924-XL";
+
+$wendor_oid[9]="SNMPv2-SMI::enterprises.9.1.324";
+$wendor[9]="Catalyst-2950-24";
+
+$wendor_oid[10]="SNMPv2-SMI::enterprises.9.1.696";
+$wendor[10]="Catalyst-2960G-24TC-L";
+
+$wendor_oid[11]="SNMPv2-SMI::enterprises.9.1.366";
+$wendor[11]="Catalyst-3550-24";
+
+$wendor_oid[12]="SNMPv2-SMI::enterprises.9.1.367";
+$wendor[12]="Catalyst-3550-48";
+
+$wendor_oid[13]="SNMPv2-SMI::enterprises.9.1.788";
+$wendor[13]="Catalyst 4500 L3";
+
+$wendor_oid[14]="SNMPv2-SMI::enterprises.9.1.615";
+$wendor[14]="Catalyst-3560G-24TS";
+
+$wendor_oid[15]="SNMPv2-SMI::enterprises.9.1.917";
+$wendor[15]="Catalyst-4900M";
+
+$wendor_oid[16]="SNMPv2-SMI::enterprises.171.10.76.32.1";
+$wendor[16]="DGS-1210-10/ME";
+
+$wendor_oid[17]="SNMPv2-SMI::enterprises.171.10.70.8";
+$wendor[17]="DGS-3627G";
+
+#DES-1228/ME_A2
+$wendor_oid[18]="SNMPv2-SMI::enterprises.171.10.116.1";
+$wendor[18]="DES-1228/ME_A2";
+$vlan_name_oid[18] = "SNMPv2-SMI::mib-2.17.7.1.4.3.1.1";
+$vlan_mgmt_oid[18] = ".1.3.6.1.4.1.171.11.116.1.2.1.2.5.0";
+$vlan_port_oid[18]=".1.3.6.1.2.1.17.7.1.4.3.1";
+$fdb_oid[18]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+$fw[18]="SNMPv2-SMI::mib-2.16.19.2.0";
+$glob_status[18]=".1.3.6.1.4.1.171.12.15.1.1.0";
+$stp_protocol[18]=".1.3.6.1.4.1.171.12.15.1.2.0";
+$port_status[18]="SNMPv2-SMI::enterprises.171.12.15.2.4.1.4";
+$stp_port_state[18]="SNMPv2-SMI::enterprises.171.12.15.2.5.1.6";
+//$root_port_arr[18]="SNMPv2-SMI::enterprises.171.12.15.2.5.1.7";
+$port_root[18]="SNMPv2-SMI::enterprises.171.12.15.2.5.1.7";
+$mac_root[18]="SNMPv2-SMI::enterprises.171.12.15.2.5.1.3";
+$port_ifOperStatus[18] = "ifOperStatus";
+$port_ifInErrors[18] = "ifInErrors";
+$port_ifOutErrors[18] = "ifOutErrors";
+$port_ifType[18] = "ifType";
+$port_sysPortCtrlSpeed[18] = ".1.3.6.1.4.1.171.11.116.1.2.2.1.1.5";
+$port_lbd_global_status[18] = ".1.3.6.1.4.1.171.11.116.1.2.21.1.1.0";
+$port_lbd_port_status[18] = ".1.3.6.1.4.1.171.11.116.1.2.21.2.1.1.2";
+$port_lbd_loop_status[18] = ".1.3.6.1.4.1.171.11.116.1.2.21.2.1.1.4";
+$tftp_agentBscSwFileAddr[18]="1.3.6.1.4.1.171.12.1.2.1.1.3.1";
+$tftp_agentBscSwFileTransferType[18]="1.3.6.1.4.1.171.12.1.2.1.1.4.1";
+$tftp_agentBscSwFile[18]="1.3.6.1.4.1.171.12.1.2.1.1.5.1";
+$tftp_agentBscSwFileLoadType[18]="1.3.6.1.4.1.171.12.1.2.1.1.7.1";
+$tftp_agentBscSwFileCtrl[18]="1.3.6.1.4.1.171.12.1.2.1.1.8.1";
+$tftp_agentBscSwFileCtrlID[18]="1.3.6.1.4.1.171.12.1.2.1.1.10.1";
+$oid_reboot[18]="1.3.6.1.4.1.171.12.1.2.3.0";
+$swMultiImageVersion[18]="1.3.6.1.4.1.171.12.1.2.7.1.2.1";
+#
+
+#DES-1228/ME_B1
+$wendor_oid[19]="SNMPv2-SMI::enterprises.171.10.116.2";
+$wendor[19]="DES-1228/ME_B1";
+$vlan_name_oid[19] = "SNMPv2-SMI::mib-2.17.7.1.4.3.1.1";
+$vlan_mgmt_oid[19] = ".1.3.6.1.4.1.171.11.116.2.2.1.2.5.0";
+$vlan_port_oid[19] = ".1.3.6.1.2.1.17.7.1.4.3.1";
+$fdb_oid[19]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+$fw[19]="SNMPv2-SMI::mib-2.16.19.2.0";
+$glob_status[19]=".1.3.6.1.4.1.171.12.15.1.1.0";
+$stp_protocol[19]=".1.3.6.1.4.1.171.12.15.1.2.0";
+$port_status[19]="SNMPv2-SMI::enterprises.171.12.15.2.4.1.4";
+$stp_port_state[19]="SNMPv2-SMI::enterprises.171.12.15.2.5.1.6";
+//$root_port_arr[19]="SNMPv2-SMI::enterprises.171.12.15.2.5.1.7";
+$port_root[19]="SNMPv2-SMI::enterprises.171.12.15.2.5.1.7";
+$mac_root[19]="SNMPv2-SMI::enterprises.171.12.15.2.5.1.3";
+$port_ifOperStatus[19] = "ifOperStatus";
+$port_ifInErrors[19] = "ifInErrors";
+$port_ifOutErrors[19] = "ifOutErrors";
+$port_ifType[19] = "ifType";
+$port_sysPortCtrlSpeed[19] = ".1.3.6.1.4.1.171.11.116.2.2.2.1.1.5";
+$port_lbd_global_status[19] = ".1.3.6.1.4.1.171.11.116.2.2.21.1.1.0";
+$port_lbd_port_status[19] = ".1.3.6.1.4.1.171.11.116.2.2.21.2.1.1.2";
+$port_lbd_loop_status[19] = ".1.3.6.1.4.1.171.11.116.2.2.21.2.1.1.4";
+$tftp_agentBscSwFileAddr[19]="1.3.6.1.4.1.171.12.1.2.1.1.3.1";
+$tftp_agentBscSwFileTransferType[19]="1.3.6.1.4.1.171.12.1.2.1.1.4.1";
+$tftp_agentBscSwFile[19]="1.3.6.1.4.1.171.12.1.2.1.1.5.1";
+$tftp_agentBscSwFileLoadType[19]="1.3.6.1.4.1.171.12.1.2.1.1.7.1";
+$tftp_agentBscSwFileCtrl[19]="1.3.6.1.4.1.171.12.1.2.1.1.8.1";
+$tftp_agentBscSwFileCtrlID[19]="1.3.6.1.4.1.171.12.1.2.1.1.10.1";
+$swMultiImageVersion[19]="1.3.6.1.4.1.171.12.1.2.7.1.2.1";
+$oid_reboot[19]="1.3.6.1.4.1.171.12.1.2.3.0";
+#
+
+#DES-3028
+$wendor_oid[20] = "SNMPv2-SMI::enterprises.171.10.63.6";
+$wendor[20]="DES-3028";
+$vlan_name_oid[20]="SNMPv2-SMI::mib-2.17.7.1.4.3.1.1";
+$vlan_mgmt_oid[20]=".1.3.6.1.4.1.171.11.63.6.2.1.2.5.0";
+$vlan_port_oid[20]="SNMPv2-SMI::mib-2.17.7.1.4.3.1";
+$fdb_oid[20]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+$fw[20]="SNMPv2-SMI::mib-2.16.19.2.0";
+$glob_status[20]=".1.3.6.1.4.1.171.12.15.1.1.0";
+$stp_protocol[20]=".1.3.6.1.4.1.171.12.15.1.2.0";
+$port_status[20]="SNMPv2-SMI::enterprises.171.12.15.2.4.1.4";
+$stp_port_state[20]="SNMPv2-SMI::enterprises.171.12.15.2.5.1.6";
+$port_root[20]="SNMPv2-SMI::enterprises.171.12.15.2.5.1.7";
+$mac_root[20]="SNMPv2-SMI::enterprises.171.12.15.2.5.1.3";
+$port_ifOperStatus[20] = "ifOperStatus";
+$port_ifInErrors[20] = "ifInErrors";
+$port_ifOutErrors[20] = "ifOutErrors";
+$port_ifType[20] = "ifType";
+$port_sysPortCtrlSpeed[20] = ".1.3.6.1.4.1.171.11.63.6.2.2.1.1.5";
+$port_lbd_global_status[20] = ".1.3.6.1.4.1.171.11.63.6.2.21.1.1.0";
+$port_lbd_port_status[20] = ".1.3.6.1.4.1.171.11.63.6.2.21.2.1.1.2";
+$port_lbd_loop_status[20] = ".1.3.6.1.4.1.171.11.63.6.2.21.2.1.1.4";
+$tftp_agentBscSwFileAddr[20]="1.3.6.1.4.1.171.12.1.2.1.1.3.1";
+$tftp_agentBscSwFileTransferType[20]="1.3.6.1.4.1.171.12.1.2.1.1.4.1";
+$tftp_agentBscSwFile[20]="1.3.6.1.4.1.171.12.1.2.1.1.5.1";
+$tftp_agentBscSwFileLoadType[20]="1.3.6.1.4.1.171.12.1.2.1.1.7.1";
+$tftp_agentBscSwFileCtrl[20]="1.3.6.1.4.1.171.12.1.2.1.1.8.1";
+$tftp_agentBscSwFileCtrlID[20]="1.3.6.1.4.1.171.12.1.2.1.1.10.1";
+$oid_reboot[20]="1.3.6.1.4.1.171.12.1.2.3.0";
+$swMultiImageVersion[20]="1.3.6.1.4.1.171.12.1.2.7.1.2.1";
+$traf_seg[20]="SNMPv2-SMI::enterprises.171.11.63.6.2.12.1.1.2";
+#
+
+#DES-3200-52
+$wendor_oid[21]="SNMPv2-SMI::enterprises.171.10.113.9.1";
+$wendor[21]="DES-3200-52";
+$vlan_name_oid[21]="SNMPv2-SMI::mib-2.17.7.1.4.3.1.1";
+$vlan_mgmt_oid[21]=".1.3.6.1.4.1.171.11.113.9.1.2.1.2.16.0";
+$vlan_port_oid[21]=".1.3.6.1.2.1.17.7.1.4.3.1";
+$fdb_oid[21]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+$fw[21]="SNMPv2-SMI::mib-2.16.19.2.0";
+$stp_port_state[21]="SNMPv2-SMI::mib-2.17.2.15.1.3";
+$port_status[21]="SNMPv2-SMI::mib-2.17.2.15.1.4";
+$mac_root[21]=".1.3.6.1.2.1.17.2.5.0";
+$port_root[21]=".1.3.6.1.2.1.17.2.7.0";
+$glob_status[21]=".1.3.6.1.4.1.171.12.15.1.1.0";
+$stp_protocol[21]=".1.3.6.1.4.1.171.12.15.1.2.0";
+$port_ifOperStatus[21] = "ifOperStatus";
+$port_ifInErrors[21] = "ifInErrors";
+$port_ifOutErrors[21] = "ifOutErrors";
+$port_ifType[21] = "ifType";
+$port_sysPortCtrlSpeed[21] = ".1.3.6.1.4.1.171.11.113.9.1.2.3.1.1.6";
+$port_lbd_global_status[21] = ".1.3.6.1.4.1.171.11.113.9.1.2.18.1.1.0";
+$port_lbd_port_status[21] = ".1.3.6.1.4.1.171.11.113.9.1.2.18.2.1.1.2";
+$port_lbd_loop_status[21] = ".1.3.6.1.4.1.171.11.113.9.1.2.18.2.1.1.4";
+$tftp_agentBscSwFileAddr[21]="1.3.6.1.4.1.171.12.1.2.18.1.1.3.1";
+$tftp_agentBscSwFile[21]="1.3.6.1.4.1.171.12.1.2.18.1.1.5.1";
+#$tftp_agentBscSwFileCtrl[21]="1.3.6.1.4.1.171.12.1.2.18.1.1.7.1";
+$tftp_agentBscSwFileLoadType[21]="1.3.6.1.4.1.171.12.1.2.18.1.1.8.1";
+$tftp_agentBscSwFileCtrlID[21]="1.3.6.1.4.1.171.12.1.2.18.1.1.12.1";
+$agentStatusFileTransfer[21]="SNMPv2-SMI::enterprises.171.12.1.1.5.0";
+$oid_reboot[21]="1.3.6.1.4.1.171.12.1.2.19.0";
+#
+
+#DES-3026
+$wendor_oid[22]="SNMPv2-SMI::enterprises.171.10.63.3";
+$wendor[22]="DES-3026";
+$vlan_name_oid[22] = "SNMPv2-SMI::mib-2.17.7.1.4.3.1.1";
+$vlan_mgmt_oid[22] = "SNMPv2-SMI::enterprises.171.11.63.3.2.1.2.5.0";
+$vlan_port_oid[22]="SNMPv2-SMI::mib-2.17.7.1.4.3.1";
+$fdb_oid[22]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+$stp_port_state[22]="SNMPv2-SMI::mib-2.17.2.15.1.3";
+$port_status[22]="SNMPv2-SMI::mib-2.17.2.15.1.4";
+$mac_root[22]=".1.3.6.1.2.1.17.2.5.0";
+$port_root[22]=".1.3.6.1.2.1.17.2.7.0";
+$stp_protocol[22]=".1.3.6.1.2.1.17.2.16.0";
+$glob_status[22]=".1.3.6.1.4.1.171.11.63.3.2.1.2.6.0";
+$port_ifOperStatus[22] = "ifOperStatus";
+$port_ifInErrors[22] = "ifInErrors";
+$port_ifOutErrors[22] = "ifOutErrors";
+$port_ifType[22] = "ifType";
+$port_sysPortCtrlSpeed[22] = ".1.3.6.1.4.1.171.11.63.3.2.2.1.1.5";
+$port_lbd_global_status[22] = ".1.3.6.1.4.1.171.11.63.3.2.18.1.1.0";
+$port_lbd_port_status[22] = ".1.3.6.1.4.1.171.11.63.3.2.18.2.1.1.2";
+$port_lbd_loop_status[22] = ".1.3.6.1.4.1.171.11.63.3.2.18.2.1.1.4";
+#
+
+#DES-3200-28
+$wendor_oid[23]="SNMPv2-SMI::enterprises.171.10.113.1.3";
+$wendor[23]="DES-3200-28";
+
+$vlan_name_oid[23] = "SNMPv2-SMI::mib-2.17.7.1.4.3.1.1";
+$vlan_mgmt_oid[23] = "SNMPv2-SMI::enterprises.171.11.113.1.3.2.1.2.5.0";
+$vlan_port_oid[23]="SNMPv2-SMI::mib-2.17.7.1.4.3.1";
+$fdb_oid[23]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+
+$fw[23]="SNMPv2-SMI::mib-2.16.19.2.0";
+$glob_status[23]=".1.3.6.1.4.1.171.12.15.1.1.0";
+$stp_protocol[23]=".1.3.6.1.4.1.171.12.15.1.2.0";
+$port_status[23]="SNMPv2-SMI::enterprises.171.12.15.2.4.1.4";
+$stp_port_state[23]="SNMPv2-SMI::enterprises.171.12.15.2.5.1.6";
+$port_root[23]="SNMPv2-SMI::enterprises.171.12.15.2.5.1.7";
+$mac_root[23]="SNMPv2-SMI::enterprises.171.12.15.2.5.1.3";
+$port_ifOperStatus[23] = "ifOperStatus";
+$port_ifInErrors[23] = "ifInErrors";
+$port_ifOutErrors[23] = "ifOutErrors";
+$port_ifType[23] = "ifType";
+$port_sysPortCtrlSpeed[23] = ".1.3.6.1.4.1.171.11.113.1.3.2.2.1.1.5";
+$port_lbd_global_status[23] = ".1.3.6.1.4.1.171.11.113.1.3.2.21.1.1.0";
+$port_lbd_port_status[23] = ".1.3.6.1.4.1.171.11.113.1.3.2.21.2.1.1.2";
+$port_lbd_loop_status[23] = ".1.3.6.1.4.1.171.11.113.1.3.2.21.2.1.1.4";
+#
+
+$wendor_oid[24]="SNMPv2-SMI::enterprises.171.10.61.2";
+$wendor[24]="DES-2108";
+
+#DES-3018
+$wendor_oid[25]="SNMPv2-SMI::enterprises.171.10.63.2";
+$wendor[25]="DES-3018";
+$vlan_name_oid[25] = "SNMPv2-SMI::mib-2.17.7.1.4.3.1.1";
+$vlan_mgmt_oid[25] = "SNMPv2-SMI::enterprises.171.11.63.2.2.1.2.5.0";
+$vlan_port_oid[25] = "SNMPv2-SMI::mib-2.17.7.1.4.3.1";
+$fdb_oid[25]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+$stp_port_state[25]="SNMPv2-SMI::mib-2.17.2.15.1.3";
+$port_status[25]="SNMPv2-SMI::mib-2.17.2.15.1.4";
+$mac_root[25]=".1.3.6.1.2.1.17.2.5.0";
+$port_root[25]=".1.3.6.1.2.1.17.2.7.0";
+$stp_protocol[25]=".1.3.6.1.2.1.17.2.16.0";
+$glob_status[25]=".1.3.6.1.4.1.171.11.63.2.2.1.2.6.0";
+$port_ifOperStatus[25] = "ifOperStatus";
+$port_ifInErrors[25] = "ifInErrors";
+$port_ifOutErrors[25] = "ifOutErrors";
+$port_ifType[25] = "ifType";
+$port_sysPortCtrlSpeed[25] = ".1.3.6.1.4.1.171.11.63.2.2.2.1.1.5";
+$port_lbd_global_status[25] = ".1.3.6.1.4.1.171.11.63.2.2.18.1.1.0";
+$port_lbd_port_status[25] = ".1.3.6.1.4.1.171.11.63.2.2.18.2.1.1.2";
+$port_lbd_loop_status[25] = ".1.3.6.1.4.1.171.11.63.2.2.18.2.1.1.4";
+#
+
+$wendor_oid[26]="SNMPv2-SMI::enterprises.2011.2.23.221";
+$wendor[26]="S5300-28X";
+$wendor_oid[27]="SNMPv2-SMI::enterprises.2254.2.4";
+$wendor[27]="UPS-GES102R200035";
+$wendor_oid[28]="SNMPv2-SMI::enterprises.32108.1.9";
+$wendor[28]="TUZ19-2003";
+$wendor_oid[29]="SNMPv2-SMI::enterprises.35702.3.2";
+$wendor[29]="TAROS_IPG";
+$wendor_oid[30]="SNMPv2-SMI::enterprises.11195.1";
+$wendor[30]="Lambda-Pro-72";
+
+#DGS-1210-28P/ME
+$wendor_oid[27]="SNMPv2-SMI::enterprises.171.10.76.30.1";
+$wendor[27]="DGS-1210-28P/ME";
+$fw[27]="SNMPv2-SMI::enterprises.171.10.76.30.1.1.3.0";
+$glob_status[27]=".1.3.6.1.4.1.171.10.76.30.1.6.1.1.0";
+$stp_protocol[27]=".1.3.6.1.4.1.171.10.76.30.1.6.1.2.0";
+$port_status[27]="SNMPv2-SMI::enterprises.171.10.76.30.1.6.2.1.2";
+$stp_port_state[27]="SNMPv2-SMI::enterprises.171.10.76.30.1.6.2.1.12";
+$port_root[27]="SNMPv2-SMI::enterprises.171.10.76.30.1.6.1.13.0";
+$swMultiImageVersion[27]=".1.3.6.1.4.1.171.10.76.30.1.1.35";
+
+#DES-1210-28P
+$wendor_oid[28]="SNMPv2-SMI::enterprises.171.10.75.6";
+$wendor[28]="DES-1210-28P";
+
+$wendor_oid[29]="SNMPv2-SMI::enterprises.171.10.119.6";
+$wendor[29]="DGS-3420-26SC";
+
+$wendor_oid[30]="SNMPv2-SMI::enterprises.9.1.1018";
+$wendor[30]="Cisco ASR9K";
+
+$wendor_oid[31]="SNMPv2-SMI::enterprises.9.1.1639";
+$wendor[31]="Cisco ASR9K";
+
+$wendor_oid[32]="SNMPv2-SMI::enterprises.9.1.924";
+$wendor[32]="Cisco ASR1K";
+
+$wendor_oid[33]="SNMPv2-SMI::enterprises.2011.2.170.1";
+$wendor[33]="Huawei s9303";
+
+$wendor_oid[34]="SNMPv2-SMI::enterprises.9.1.516";
+$wendor[34]="Cisco C3750E";
+
+$wendor_oid[35]="SNMPv2-SMI::enterprises.9.1.1250";
+$wendor[35]="Cisco ME360x";
+
+$wendor_oid[36]="SNMPv2-SMI::enterprises.9.1.923";
+$wendor[36]="Cisco ASR1K";
+
+#Huawei s3328
+#not testet
+$wendor_oid[37]="SNMPv2-SMI::enterprises.2011.2.23.80";
+$wendor[37]="s3328";
+$stp_port_state[37]="SNMPv2-SMI::mib-2.17.2.15.1.3";
+$port_status[37]="SNMPv2-SMI::mib-2.17.2.15.1.4";
+$mac_root[37]=".1.3.6.1.2.1.17.2.5.0";
+$port_root[37]=".1.3.6.1.2.1.17.2.7.0";
+$stp_protocol[37]="1.3.6.1.4.1.2011.5.25.42.4.1.2.0";
+$glob_status[37]="1.3.6.1.4.1.2011.5.25.42.4.1.1.0";
+$vlan_name_oid[37] = "SNMPv2-SMI::enterprises.2011.5.25.42.3.1.1.1.1.2";
+$vlan_port_oid[37]="SNMPv2-SMI::mib-2.17.7.1.4.3.1";
+$fdb_oid[37]="SNMPv2-SMI::enterprises.2011.5.25.42.2.1.3.1.4";
+$fdb_oid_acc[37]="SNMPv2-SMI::mib-2.17.4.3.1.2";
+//$fdb_oid_acc2[37]="SNMPv2-SMI::enterprises.2011.5.25.42.2.1.32.1.13";
+#$fw[37]="SNMPv2-SMI::enterprises.2011.5.25.19.1.8.5.1.1";
+$fw_all[37]="SNMPv2-SMI::enterprises.2011.5.25.19.1.4.2.1";
+$path_all[37]="SNMPv2-SMI::enterprises.2011.5.25.19.1.8.2.1";
+$fw_key[37]="SNMPv2-SMI::enterprises.2011.5.25.19.1.2.1.1.3.0";
+$path_key[37]="SNMPv2-SMI::enterprises.2011.5.25.19.1.2.1.1.6.0";
+$free_flash[37]="SNMPv2-SMI::enterprises.2011.6.9.1.1.4.1.1.5.1.1";
+$ftp_2[37] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.2";
+$ftp_3[37] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.3";
+$ftp_4[37] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.4";
+$ftp_5[37] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.5";
+$ftp_6[37] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.6";
+$ftp_7[37] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.7";
+$ftp_8[37] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.8";
+$ftp_12[37] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.12";
+$ftp_status[37] = "SNMPv2-SMI::enterprises.2011.6.9.1.2.1.1.9";
+$oid_startup_fw[37] = "SNMPv2-SMI::enterprises.2011.5.25.19.1.3.3.1.4.0";
+$oid_startup_path[37] = "SNMPv2-SMI::enterprises.2011.5.25.19.1.3.3.1.10.0";
+$oid_reboot[37] = "1.3.6.1.4.1.2011.5.25.19.1.3.8.0";
+$file_all[37] = "SNMPv2-SMI::enterprises.2011.6.9.1.1.4.2.1.1";
+$port_ifOperStatus[37] = "ifOperStatus";
+$port_ifInErrors[37] = "ifInErrors";
+$port_ifOutErrors[37] = "ifOutErrors";
+$port_ifType[37] = "ifType";
+$port_ifDescr[37] = "ifDescr";
+$port_lbd_port_status[37] = "SNMPv2-SMI::enterprises.2011.5.25.174.1.1.7.1.3";
+$port_lbd_loop_status[37] = "SNMPv2-SMI::enterprises.2011.5.25.174.1.1.7.1.6";
+$port_sysPortCtrlSpeed[37] = "EtherLike-MIB::dot3StatsDuplexStatus";
+$traf_seg[37]="SNMPv2-SMI::enterprises.2011.5.25.42.1.1.1.3.1.31";
+$traf_seg_index_port[37]="1.3.6.1.4.1.2011.5.25.42.1.1.1.3.1.2";
+
+#DES-3200-28/C1 
+$wendor_oid[38]="SNMPv2-SMI::enterprises.171.10.113.5.1";
+$wendor[38]="DES-3200-28C1 ";
+$vlan_name_oid[38] = "SNMPv2-SMI::mib-2.17.7.1.4.3.1.1";
+$vlan_mgmt_oid[38] = "SNMPv2-SMI::enterprises.171.11.113.1.3.2.1.2.5.0";
+$vlan_port_oid[38]="SNMPv2-SMI::mib-2.17.7.1.4.3.1";
+$fdb_oid[38]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+$fw[38]="SNMPv2-SMI::mib-2.16.19.2.0";
+$glob_status[38]=".1.3.6.1.4.1.171.12.15.1.1.0";
+$stp_protocol[38]=".1.3.6.1.4.1.171.12.15.1.2.0";
+$port_status[38]="SNMPv2-SMI::enterprises.171.12.15.2.4.1.4";
+$stp_port_state[38]="SNMPv2-SMI::enterprises.171.12.15.2.5.1.6";
+$port_root[38]="SNMPv2-SMI::enterprises.171.12.15.2.5.1.7";
+$mac_root[38]="SNMPv2-SMI::enterprises.171.12.15.2.5.1.3";
+$port_ifOperStatus[38] = "ifOperStatus";
+$port_ifInErrors[38] = "ifInErrors";
+$port_ifOutErrors[38] = "ifOutErrors";
+$port_ifType[38] = "ifType";
+$port_sysPortCtrlSpeed[38] = ".1.3.6.1.4.1.171.11.113.1.3.2.2.1.1.5";
+$port_lbd_global_status[38] = ".1.3.6.1.4.1.171.11.113.1.3.2.21.1.1.0";
+$port_lbd_port_status[38] = ".1.3.6.1.4.1.171.11.113.1.3.2.21.2.1.1.2";
+$port_lbd_loop_status[38] = ".1.3.6.1.4.1.171.11.113.1.3.2.21.2.1.1.4";
+#
+
+#Cisco c7600
+$wendor_oid[39]="SNMPv2-SMI::enterprises.9.1.658";
+$wendor[39]="Cisco c7600";
+#
+
+#Lambda PRO 72
+$wendor_oid[40]="SNMPv2-SMI::enterprises.11195.1";
+$wendor[40]="Lambda PRO 72";
+#
+
+#DES1210-28B3
+$wendor_oid[41]="SNMPv2-SMI::enterprises.2011.2.170.1";
+$wendor[41]="DES1210-28B3";
+$vlan_name_oid[41]="SNMPv2-SMI::enterprises.2011.2.170.1.7.6.1.1";
+$vlan_mgmt_oid[41]="SNMPv2-SMI::enterprises.2011.2.170.1.7.3.0";
+$vlan_port_oid[41]=".1.3.6.1.4.1.2011.2.170.1.7.6.1";
+$fdb_oid[41]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+$fw[41]="SNMPv2-SMI::mib-2.16.19.2.0";
+$glob_status[41]=".1.3.6.1.4.1.2011.2.170.1.6.1.1.0";
+$port_status[41]="SNMPv2-SMI::enterprises.2011.2.170.1.6.2.1.2";
+$stp_port_state[41]="SNMPv2-SMI::enterprises.2011.2.170.1.6.2.1.12";
+$mac_root[41]=".1.3.6.1.4.1.2011.2.170.1.6.1.9.0";
+$port_root[41]=".1.3.6.1.4.1.2011.2.170.1.6.1.13.0";
+$stp_protocol[41]=".1.3.6.1.4.1.2011.2.170.1.6.1.2.0";
+$port_ifOperStatus[41] = "ifOperStatus";
+$port_ifInErrors[41] = "ifInErrors";
+$port_ifOutErrors[41] = "ifOutErrors";
+$port_ifType[41] = "ifType";
+$port_sysPortCtrlSpeed[41] = ".1.3.6.1.4.1.2011.2.170.1.1.13.1.3";
+$port_lbd_global_status[41] = ".1.3.6.1.4.1.2011.2.170.1.17.1.0";
+$port_lbd_port_status[41] = ".1.3.6.1.4.1.2011.2.170.1.17.5.1.2";
+$port_lbd_loop_status[41] = ".1.3.6.1.4.1.2011.2.170.1.17.5.1.3";
+$tftp_agentBscSwFileAddr[41]="1.3.6.1.4.1.2011.2.170.1.3.1.0";
+$tftp_agentBscSwFile[41]="1.3.6.1.4.1.2011.2.170.1.3.2.0";
+$tftp_agentBscSwFileLoadType[41]="1.3.6.1.4.1.2011.2.170.1.3.3.0";
+$agentStatusFileTransfer[41]="1.3.6.1.4.1.2011.2.170.1.3.4.0";
+$oid_reboot[41]=".1.3.6.1.4.1.2011.2.170.1.1.9.0";
+
+#
+#DGS-1210-28/ME
+$wendor_oid[42]="SNMPv2-SMI::enterprises.171.10.75.15.2";;
+$wendor[42]="DGS-1210-28/ME";
+$vlan_name_oid[42]="SNMPv2-SMI::enterprises.171.10.75.15.2.7.6.1.1";
+$vlan_mgmt_oid[42]="SNMPv2-SMI::enterprises.171.10.75.15.2.7.3.0";
+$vlan_port_oid[42]=".1.3.6.1.4.1.171.10.75.15.2.7.6.1";
+$fdb_oid[42]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+$fw[42]="SNMPv2-SMI::mib-2.16.19.2.0";
+$glob_status[42]=".1.3.6.1.4.1.171.10.75.15.2.6.1.1.0";
+$port_status[42]="SNMPv2-SMI::enterprises.171.10.75.15.2.6.2.1.2";
+$stp_port_stat[42]="SNMPv2-SMI::enterprises.171.10.75.15.2.6.2.1.12";
+$mac_root[42]=".1.3.6.1.4.1.171.10.75.15.2.6.1.9.0";
+$port_root[42]=".1.3.6.1.4.1.171.10.75.15.2.6.1.13.0";
+$stp_protocol[42]=".1.3.6.1.4.1.171.10.75.15.2.6.1.2.0";
+$port_ifOperStatus[42] = "ifOperStatus";
+$port_ifInErrors[42] = "ifInErrors";                  
+$port_ifOutErrors[42] = "ifOutErrors"; 
+$port_ifType[42] = "ifType";                 
+$port_sysPortCtrlSpeed[42] = ".1.3.6.1.4.1.171.10.75.15.2.1.13.1.3";            
+$port_lbd_global_status[42] = ".1.3.6.1.4.1.171.10.75.15.2.17.1.0";           
+$port_lbd_port_status[42] = ".1.3.6.1.4.1.171.10.75.15.2.17.5.1.2";             
+$port_lbd_loop_status[42] = ".1.3.6.1.4.1.171.10.75.15.2.17.5.1.3";
+#$swMultiImageVersion[6]="1.3.6.1.4.1.171.10.75.15.2.1.31.1.1.0";
+#$tftp_agentBscSwFileAddr[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.1.0";
+#$tftp_agentBscSwFile[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.4.0";
+#$tftp_agentBscSwFileLoadType[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.5.0";
+#$tftp_agentBscSwFileCtrlID[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.2.0";
+#$agentStatusFileTransfer[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.6.0";
+$tftp_agentBscSwFileAddr[42]="1.3.6.1.4.1.171.10.75.15.2.3.1.0";
+$tftp_agentBscSwFile[42]="1.3.6.1.4.1.171.10.75.15.2.3.2.0";
+$tftp_agentBscSwFileLoadType[42]="1.3.6.1.4.1.171.10.75.15.2.3.3.0";
+$agentStatusFileTransfer[42]="1.3.6.1.4.1.171.10.75.15.2.3.4.0";
+
+#DGS-1210-28X/ME/B1
+$wendor_oid[43]="SNMPv2-SMI::enterprises.171.10.76.43.1";;
+$wendor[43]="DGS-1210-28X/ME/B1";
+$vlan_name_oid[43]="SNMPv2-SMI::enterprises.171.10.76.43.1.7.6.1.1";
+$vlan_mgmt_oid[43]="SNMPv2-SMI::enterprises.171.10.76.43.1.7.3.0";
+$vlan_port_oid[43]=".1.3.6.1.4.1.171.10.76.43.1.7.6.1";
+$fdb_oid[43]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+$fw[43]="SNMPv2-SMI::mib-2.16.19.2.0";
+$glob_status[43]=".1.3.6.1.4.1.171.10.76.43.1.6.1.1.0";
+$port_status[43]="SNMPv2-SMI::enterprises.171.10.76.43.1.6.2.1.2";
+$stp_port_stat[43]="SNMPv2-SMI::enterprises.171.10.76.43.1.6.2.1.12";
+$mac_root[43]=".1.3.6.1.4.1.171.10.76.43.1.6.1.9.0";
+$port_root[43]=".1.3.6.1.4.1.171.10.76.43.1.6.1.13.0";
+$stp_protocol[43]=".1.3.6.1.4.1.171.10.76.43.1.6.1.2.0";
+$port_ifOperStatus[43] = "ifOperStatus";
+$port_ifInErrors[43] = "ifInErrors";
+$port_ifOutErrors[43] = "ifOutErrors";
+$port_ifType[43] = "ifType";
+$port_sysPortCtrlSpeed[43] = ".1.3.6.1.4.1.171.10.76.43.1.1.13.1.3";
+$port_lbd_global_status[43] = ".1.3.6.1.4.1.171.10.76.43.1.17.1.0";
+$port_lbd_port_status[43] = ".1.3.6.1.4.1.171.10.76.43.1.17.5.1.2";
+$port_lbd_loop_status[43] = ".1.3.6.1.4.1.171.10.76.43.1.17.5.1.3";
+#$swMultiImageVersion[]="1.3.6.1.4.1.171.10.76.43.1.1.31.1.1.0";
+#$tftp_agentBscSwFileAddr[6]="1.3.6.1.4.1.171.10.76.43.1.3.9.1.0";
+#$tftp_agentBscSwFile[6]="1.3.6.1.4.1.171.10.76.43.1.3.9.4.0";
+#$tftp_agentBscSwFileLoadType[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.5.0";
+#$tftp_agentBscSwFileCtrlID[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.2.0";
+#$agentStatusFileTransfer[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.6.0";
+$tftp_agentBscSwFileAddr[43]="1.3.6.1.4.1.171.10.76.43.1.3.1.0";
+$tftp_agentBscSwFile[43]="1.3.6.1.4.1.171.10.76.43.1.3.2.0";
+$tftp_agentBscSwFileLoadType[43]="1.3.6.1.4.1.171.10.76.43.1.3.3.0";
+$agentStatusFileTransfer[43]="1.3.6.1.4.1.171.10.76.43.1.3.4.0";
+
+#DGS-1210-28X/ME/B1
+$wendor_oid[44]="SNMPv2-SMI::enterprises.171.10.76.35.1";;
+$wendor[44]="D-Link DGS-1210-10/ME";
+$vlan_name_oid[44]="SNMPv2-SMI::enterprises.171.10.76.35.1.7.6.1.1";
+$vlan_mgmt_oid[44]="SNMPv2-SMI::enterprises.171.10.76.35.1.7.3.0";
+$vlan_port_oid[44]=".1.3.6.1.4.1.171.10.76.35.1.7.6.1";
+$fdb_oid[44]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+$fw[44]="SNMPv2-SMI::mib-2.16.19.2.0";
+$glob_status[44]=".1.3.6.1.4.1.171.10.76.35.1.6.1.1.0";
+$port_status[44]="SNMPv2-SMI::enterprises.171.10.76.35.1.6.2.1.2";
+$stp_port_stat[44]="SNMPv2-SMI::enterprises.171.10.76.35.1.6.2.1.12";
+$mac_root[44]=".1.3.6.1.4.1.171.10.76.35.1.6.1.9.0";
+$port_root[44]=".1.3.6.1.4.1.171.10.76.35.1.6.1.13.0";
+$stp_protocol[44]=".1.3.6.1.4.1.171.10.76.35.1.6.1.2.0";
+$port_ifOperStatus[44] = "ifOperStatus";
+$port_ifInErrors[44] = "ifInErrors";
+$port_ifOutErrors[44] = "ifOutErrors";
+$port_ifType[44] = "ifType";
+$port_sysPortCtrlSpeed[44] = ".1.3.6.1.4.1.171.10.76.35.1.1.13.1.3";
+$port_lbd_global_status[44] = ".1.3.6.1.4.1.171.10.76.35.1.17.1.0";
+$port_lbd_port_status[44] = ".1.3.6.1.4.1.171.10.76.35.1.17.5.1.2";
+$port_lbd_loop_status[44] = ".1.3.6.1.4.1.171.10.76.35.1.17.5.1.3";
+#$swMultiImageVersion[44]="1.3.6.1.4.1.171.10.76.35.1.1.31.1.1.0";
+#$tftp_agentBscSwFileAddr[44]="1.3.6.1.4.1.171.10.76.35.1.3.9.1.0";
+#$tftp_agentBscSwFile[44]="1.3.6.1.4.1.171.10.76.35.1.3.9.4.0";
+#$tftp_agentBscSwFileLoadType[44]="1.3.6.1.4.1.171.10.75.15.2.3.9.5.0";
+#$tftp_agentBscSwFileCtrlID[44]="1.3.6.1.4.1.171.10.75.15.2.3.9.2.0";
+#$agentStatusFileTransfer[6]="1.3.6.1.4.1.171.10.76.43.1.3.9.6.0";
+$tftp_agentBscSwFileAddr[44]="1.3.6.1.4.1.171.10.76.43.1.3.1.0";
+$tftp_agentBscSwFile[44]="1.3.6.1.4.1.171.10.76.43.1.3.2.0";
+$tftp_agentBscSwFileLoadType[44]="1.3.6.1.4.1.171.10.76.43.1.3.3.0";
+$agentStatusFileTransfer[44]="1.3.6.1.4.1.171.10.76.43.1.3.4.0";
+
+
+
+#D-Link DES-3052
+$wendor_oid[47]="SNMPv2-SMI::enterprises.171.10.63.8";;
+$wendor[47]="D-Link DES-3052";
+$vlan_name_oid[47]="SNMPv2-SMI::enterprises.171.10.63.8.7.6.1.1";
+$vlan_mgmt_oid[47]="SNMPv2-SMI::enterprises.171.10.63.8.7.3.0";
+$vlan_port_oid[47]=".1.3.6.1.4.1.171.10.63.8.7.6.1";
+$fdb_oid[47]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+$fw[47]="SNMPv2-SMI::mib-2.16.19.2.0";
+$glob_status[47]=".1.3.6.1.4.1.171.10.63.8.6.1.1.0";
+$port_status[47]="SNMPv2-SMI::enterprises.171.10.63.8.6.2.1.2";
+$stp_port_stat[47]="SNMPv2-SMI::enterprises.171.10.63.8.6.2.1.12";
+$mac_root[47]=".1.3.6.1.4.1.171.10.63.8.6.1.9.0";
+$port_root[47]=".1.3.6.1.4.1.171.10.63.8.6.1.13.0";
+$stp_protocol[47]=".1.3.6.1.4.1.171.10.63.8.6.1.2.0";
+$port_ifOperStatus[47] = "ifOperStatus";
+$port_ifInErrors[47] = "ifInErrors";
+$port_ifOutErrors[47] = "ifOutErrors";
+$port_ifType[47] = "ifType";
+$port_sysPortCtrlSpeed[47] = ".1.3.6.1.4.1.171.10.63.8.1.13.1.3";
+$port_lbd_global_status[47] = ".1.3.6.1.4.1.171.10.63.8.17.1.0";
+$port_lbd_port_status[47] = ".1.3.6.1.4.1.171.10.63.8.17.5.1.2";
+$port_lbd_loop_status[47] = ".1.3.6.1.4.1.171.10.63.8.17.5.1.3";
+#$swMultiImageVersion[]="1.3.6.1.4.1.171.10.63.8.1.31.1.1.0";
+#$tftp_agentBscSwFileAddr[6]="1.3.6.1.4.1.171.10.63.8.3.9.1.0";
+#$tftp_agentBscSwFile[6]="1.3.6.1.4.1.171.10.63.8.3.9.4.0";
+#$tftp_agentBscSwFileLoadType[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.5.0";
+#$tftp_agentBscSwFileCtrlID[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.2.0";
+#$agentStatusFileTransfer[6]="1.3.6.1.4.1.171.10.76.43.1.3.9.6.0";
+$tftp_agentBscSwFileAddr[47]="1.3.6.1.4.1.171.10.76.43.1.3.1.0";
+$tftp_agentBscSwFile[47]="1.3.6.1.4.1.171.10.76.43.1.3.2.0";
+$tftp_agentBscSwFileLoadType[47]="1.3.6.1.4.1.171.10.76.43.1.3.3.0";
+$agentStatusFileTransfer[47]="1.3.6.1.4.1.171.10.63.8.3.4.0";
+
+
+
+#D-Link DES-3200-10
+$wendor_oid[48]="SNMPv2-SMI::enterprises.171.10.113.1.1";;
+$wendor[48]="D-Link DES-3200-10";
+$vlan_name_oid[48]="SNMPv2-SMI::enterprises.171.10.113.1.1.7.6.1.1";
+$vlan_mgmt_oid[48]="SNMPv2-SMI::enterprises.171.10.113.1.1.7.3.0";
+$vlan_port_oid[48]=".1.3.6.1.4.1.171.10.113.1.1.7.6.1";
+$fdb_oid[48]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+$fw[48]="SNMPv2-SMI::mib-2.16.19.2.0";
+$glob_status[48]=".1.3.6.1.4.1.171.10.113.1.1.6.1.1.0";
+$port_status[48]="SNMPv2-SMI::enterprises.171.10.113.1.1.6.2.1.2";
+$stp_port_stat[48]="SNMPv2-SMI::enterprises.171.10.113.1.1.6.2.1.12";
+$mac_root[48]=".1.3.6.1.4.1.171.10.113.1.1.6.1.9.0";
+$port_root[48]=".1.3.6.1.4.1.171.10.113.1.1.6.1.13.0";
+$stp_protocol[48]=".1.3.6.1.4.1.171.10.113.1.1.6.1.2.0";
+$port_ifOperStatus[48] = "ifOperStatus";
+$port_ifInErrors[48] = "ifInErrors";
+$port_ifOutErrors[48] = "ifOutErrors";
+$port_ifType[48] = "ifType";
+$port_sysPortCtrlSpeed[48] = ".1.3.6.1.4.1.171.10.113.1.1.1.13.1.3";
+$port_lbd_global_status[48] = ".1.3.6.1.4.1.171.10.113.1.1.17.1.0";
+$port_lbd_port_status[48] = ".1.3.6.1.4.1.171.10.113.1.1.17.5.1.2";
+$port_lbd_loop_status[48] = ".1.3.6.1.4.1.171.10.113.1.1.17.5.1.3";
+#$swMultiImageVersion[]="1.3.6.1.4.1.171.10.113.1.1.1.31.1.1.0";
+#$tftp_agentBscSwFileAddr[6]="1.3.6.1.4.1.171.10.113.1.1.3.9.1.0";
+#$tftp_agentBscSwFile[6]="1.3.6.1.4.1.171.10.113.1.1.3.9.4.0";
+#$tftp_agentBscSwFileLoadType[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.5.0";
+#$tftp_agentBscSwFileCtrlID[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.2.0";
+#$agentStatusFileTransfer[6]="1.3.6.1.4.1.171.10.76.43.1.3.9.6.0";
+$tftp_agentBscSwFileAddr[48]="1.3.6.1.4.1.171.10.76.43.1.3.1.0";
+$tftp_agentBscSwFile[48]="1.3.6.1.4.1.171.10.76.43.1.3.2.0";
+$tftp_agentBscSwFileLoadType[48]="1.3.6.1.4.1.171.10.76.43.1.3.3.0";
+$agentStatusFileTransfer[48]="1.3.6.1.4.1.171.10.76.43.1.3.4.0";
+
+#D-Link DGS-1210-10/ME
+$wendor_oid[49]="SNMPv2-SMI::enterprises.171.10.76.35.1";;
+$wendor[49]="D-Link DGS-1210-10/ME";
+$vlan_name_oid[49]="SNMPv2-SMI::enterprises.171.10.76.35.1.7.6.1.1";
+$vlan_mgmt_oid[49]="SNMPv2-SMI::enterprises.171.10.76.35.1.7.3.0";
+$vlan_port_oid[49]=".1.3.6.1.4.1.171.10.76.35.1.7.6.1";
+$fdb_oid[49]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+$fw[49]="SNMPv2-SMI::mib-2.16.19.2.0";
+$glob_status[49]=".1.3.6.1.4.1.171.10.76.35.1.6.1.1.0";
+$port_status[49]="SNMPv2-SMI::enterprises.171.10.76.35.1.6.2.1.2";
+$stp_port_stat[49]="SNMPv2-SMI::enterprises.171.10.76.35.1.6.2.1.12";
+$mac_root[49]=".1.3.6.1.4.1.171.10.76.35.1.6.1.9.0";
+$port_root[49]=".1.3.6.1.4.1.171.10.76.35.1.6.1.13.0";
+$stp_protocol[49]=".1.3.6.1.4.1.171.10.76.35.1.6.1.2.0";
+$port_ifOperStatus[49] = "ifOperStatus";
+$port_ifInErrors[49] = "ifInErrors";
+$port_ifOutErrors[49] = "ifOutErrors";
+$port_ifType[49] = "ifType";
+$port_sysPortCtrlSpeed[49] = ".1.3.6.1.4.1.171.10.76.35.1.1.13.1.3";
+$port_lbd_global_status[49] = ".1.3.6.1.4.1.171.10.76.35.1.17.1.0";
+$port_lbd_port_status[49] = ".1.3.6.1.4.1.171.10.76.35.1.17.5.1.2";
+$port_lbd_loop_status[49] = ".1.3.6.1.4.1.171.10.76.35.1.17.5.1.3";
+#$swMultiImageVersion[]="1.3.6.1.4.1.171.10.76.35.1.1.31.1.1.0";
+#$tftp_agentBscSwFileAddr[6]="1.3.6.1.4.1.171.10.76.35.1.3.9.1.0";
+#$tftp_agentBscSwFile[6]="1.3.6.1.4.1.171.10.76.35.1.3.9.4.0";
+#$tftp_agentBscSwFileLoadType[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.5.0";
+#$tftp_agentBscSwFileCtrlID[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.2.0";
+#$agentStatusFileTransfer[6]="1.3.6.1.4.1.171.10.76.43.1.3.9.6.0";
+$tftp_agentBscSwFileAddr[49]="1.3.6.1.4.1.171.10.76.43.1.3.1.0";
+$tftp_agentBscSwFile[49]="1.3.6.1.4.1.171.10.76.43.1.3.2.0";
+$tftp_agentBscSwFileLoadType[49]="1.3.6.1.4.1.171.10.76.43.1.3.3.0";
+$agentStatusFileTransfer[49]="1.3.6.1.4.1.171.10.76.43.1.3.4.0";
+
+#D-Link DGS-1210-10/ME
+$wendor_oid[50]="SNMPv2-SMI::enterprises.171.10.76.35.1";;
+$wendor[50]="D-Link DGS-1210-10/ME";
+$vlan_name_oid[50]="SNMPv2-SMI::enterprises.171.10.76.35.1.7.6.1.1";
+$vlan_mgmt_oid[50]="SNMPv2-SMI::enterprises.171.10.76.35.1.7.3.0";
+$vlan_port_oid[50]=".1.3.6.1.4.1.171.10.76.35.1.7.6.1";
+$fdb_oid[50]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+$fw[50]="SNMPv2-SMI::mib-2.16.19.2.0";
+$glob_status[50]=".1.3.6.1.4.1.171.10.76.35.1.6.1.1.0";
+$port_status[50]="SNMPv2-SMI::enterprises.171.10.76.35.1.6.2.1.2";
+$stp_port_stat[50]="SNMPv2-SMI::enterprises.171.10.76.35.1.6.2.1.12";
+$mac_root[50]=".1.3.6.1.4.1.171.10.76.35.1.6.1.9.0";
+$port_root[50]=".1.3.6.1.4.1.171.10.76.35.1.6.1.13.0";
+$stp_protocol[50]=".1.3.6.1.4.1.171.10.76.35.1.6.1.2.0";
+$port_ifOperStatus[50] = "ifOperStatus";
+$port_ifInErrors[50] = "ifInErrors";
+$port_ifOutErrors[50] = "ifOutErrors";
+$port_ifType[50] = "ifType";
+$port_sysPortCtrlSpeed[50] = ".1.3.6.1.4.1.171.10.76.35.1.1.13.1.3";
+$port_lbd_global_status[50] = ".1.3.6.1.4.1.171.10.76.35.1.17.1.0";
+$port_lbd_port_status[50] = ".1.3.6.1.4.1.171.10.76.35.1.17.5.1.2";
+$port_lbd_loop_status[50] = ".1.3.6.1.4.1.171.10.76.35.1.17.5.1.3";
+#$swMultiImageVersion[]="1.3.6.1.4.1.171.10.76.35.1.1.31.1.1.0";
+#$tftp_agentBscSwFileAddr[6]="1.3.6.1.4.1.171.10.76.35.1.3.9.1.0";
+#$tftp_agentBscSwFile[6]="1.3.6.1.4.1.171.10.76.35.1.3.9.4.0";
+#$tftp_agentBscSwFileLoadType[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.5.0";
+#$tftp_agentBscSwFileCtrlID[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.2.0";
+#$agentStatusFileTransfer[6]="1.3.6.1.4.1.171.10.76.43.1.3.9.6.0";
+$tftp_agentBscSwFileAddr[50]="1.3.6.1.4.1.171.10.76.43.1.3.1.0";
+$tftp_agentBscSwFile[50]="1.3.6.1.4.1.171.10.76.43.1.3.2.0";
+$tftp_agentBscSwFileLoadType[50]="1.3.6.1.4.1.171.10.76.43.1.3.3.0";
+$agentStatusFileTransfer[50]="1.3.6.1.4.1.171.10.76.43.1.3.4.0";
+
+
+#ECS3510-28T
+$wendor_oid[51]="SNMPv2-SMI::enterprises.259.10.1.27.101";;
+$wendor[51]="ECS3510-28T";
+$vlan_name_oid[51]="SNMPv2-SMI::enterprises.259.10.1.27.101.7.6.1.1";
+$vlan_mgmt_oid[51]="SNMPv2-SMI::enterprises.259.10.1.27.101.7.3.0";
+$vlan_port_oid[51]=".1.3.6.1.4.1.259.10.1.27.101.7.6.1";
+$fdb_oid[51]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+$fw[51]="SNMPv2-SMI::mib-2.16.19.2.0";
+$glob_status[51]=".1.3.6.1.4.1.259.10.1.27.101.6.1.1.0";
+$port_status[51]="SNMPv2-SMI::enterprises.259.10.1.27.101.6.2.1.2";
+$stp_port_stat[51]="SNMPv2-SMI::enterprises.259.10.1.27.101.6.2.1.12";
+$mac_root[51]=".1.3.6.1.4.1.259.10.1.27.101.6.1.9.0";
+$port_root[51]=".1.3.6.1.4.1.259.10.1.27.101.6.1.13.0";
+$stp_protocol[51]=".1.3.6.1.4.1.259.10.1.27.101.6.1.2.0";
+$port_ifOperStatus[51] = "ifOperStatus";
+$port_ifInErrors[51] = "ifInErrors";
+$port_ifOutErrors[51] = "ifOutErrors";
+$port_ifType[51] = "ifType";
+$port_sysPortCtrlSpeed[51] = ".1.3.6.1.4.1.259.10.1.27.101.1.13.1.3";
+$port_lbd_global_status[51] = ".1.3.6.1.4.1.259.10.1.27.101.17.1.0";
+$port_lbd_port_status[51] = ".1.3.6.1.4.1.259.10.1.27.101.17.5.1.2";
+$port_lbd_loop_status[51] = ".1.3.6.1.4.1.259.10.1.27.101.17.5.1.3";
+#$swMultiImageVersion[]="1.3.6.1.4.1.259.10.1.27.101.1.31.1.1.0";
+#$tftp_agentBscSwFileAddr[6]="1.3.6.1.4.1.259.10.1.27.101.3.9.1.0";
+#$tftp_agentBscSwFile[6]="1.3.6.1.4.1.259.10.1.27.101.3.9.4.0";
+#$tftp_agentBscSwFileLoadType[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.5.0";
+#$tftp_agentBscSwFileCtrlID[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.2.0";
+#$agentStatusFileTransfer[6]="1.3.6.1.4.1.171.10.76.43.1.3.9.6.0";
+$tftp_agentBscSwFileAddr[51]="1.3.6.1.4.1.171.10.76.43.1.3.1.0";
+$tftp_agentBscSwFile[51]="1.3.6.1.4.1.171.10.76.43.1.3.2.0";
+$tftp_agentBscSwFileLoadType[51]="1.3.6.1.4.1.171.10.76.43.1.3.3.0";
+$agentStatusFileTransfer[51]="1.3.6.1.4.1.171.10.76.43.1.3.4.0";
+
+
+#ECS3510-52T
+$wendor_oid[52]="SNMPv2-SMI::enterprises.259.10.1.27.102";;
+$wendor[52]="ECS3510-52T";
+$vlan_name_oid[52]="SNMPv2-SMI::enterprises.259.10.1.27.102.7.6.1.1";
+$vlan_mgmt_oid[52]="SNMPv2-SMI::enterprises.259.10.1.27.102.7.3.0";
+$vlan_port_oid[52]=".1.3.6.1.4.1.259.10.1.27.102.7.6.1";
+$fdb_oid[52]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+$fw[52]="SNMPv2-SMI::mib-2.16.19.2.0";
+$glob_status[52]=".1.3.6.1.4.1.259.10.1.27.102.6.1.1.0";
+$port_status[52]="SNMPv2-SMI::enterprises.259.10.1.27.102.6.2.1.2";
+$stp_port_stat[52]="SNMPv2-SMI::enterprises.259.10.1.27.102.6.2.1.12";
+$mac_root[52]=".1.3.6.1.4.1.259.10.1.27.102.6.1.9.0";
+$port_root[52]=".1.3.6.1.4.1.259.10.1.27.102.6.1.13.0";
+$stp_protocol[52]=".1.3.6.1.4.1.259.10.1.27.102.6.1.2.0";
+$port_ifOperStatus[51] = "ifOperStatus";
+$port_ifInErrors[52] = "ifInErrors";
+$port_ifOutErrors[52] = "ifOutErrors";
+$port_ifType[52] = "ifType";
+$port_sysPortCtrlSpeed[52] = ".1.3.6.1.4.1.259.10.1.27.102.1.13.1.3";
+$port_lbd_global_status[52] = ".1.3.6.1.4.1.259.10.1.27.102.17.1.0";
+$port_lbd_port_status[52] = ".1.3.6.1.4.1.259.10.1.27.102.17.5.1.2";
+$port_lbd_loop_status[52] = ".1.3.6.1.4.1.259.10.1.27.102.17.5.1.3";
+#$swMultiImageVersion[]="1.3.6.1.4.1.259.10.1.27.102.1.31.1.1.0";
+#$tftp_agentBscSwFileAddr[6]="1.3.6.1.4.1.259.10.1.27.102.3.9.1.0";
+#$tftp_agentBscSwFile[6]="1.3.6.1.4.1.259.10.1.27.102.3.9.4.0";
+#$tftp_agentBscSwFileLoadType[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.5.0";
+#$tftp_agentBscSwFileCtrlID[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.2.0";
+#$agentStatusFileTransfer[6]="1.3.6.1.4.1.171.10.76.43.1.3.9.6.0";
+$tftp_agentBscSwFileAddr[52]="1.3.6.1.4.1.171.10.76.43.1.3.1.0";
+$tftp_agentBscSwFile[52]="1.3.6.1.4.1.171.10.76.43.1.3.2.0";
+$tftp_agentBscSwFileLoadType[52]="1.3.6.1.4.1.171.10.76.43.1.3.3.0";
+$agentStatusFileTransfer[52]="1.3.6.1.4.1.171.10.76.43.1.3.4.0";
+
+
+#DGS-3100-24TG
+$wendor_oid[53]="SNMPv2-SMI::enterprises.171.10.94.5";;
+$wendor[53]="DGS-3100-24TG";
+$vlan_name_oid[53]="SNMPv2-SMI::enterprises.259.10.1.27.102.7.6.1.1";
+$vlan_mgmt_oid[53]="SNMPv2-SMI::enterprises.259.10.1.27.102.7.3.0";
+$vlan_port_oid[53]=".1.3.6.1.4.1.259.10.1.27.102.7.6.1";
+$fdb_oid[53]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+$fw[53]="SNMPv2-SMI::mib-2.16.19.2.0";
+$glob_status[53]=".1.3.6.1.4.1.259.10.1.27.102.6.1.1.0";
+$port_status[53]="SNMPv2-SMI::enterprises.259.10.1.27.102.6.2.1.2";
+$stp_port_stat[53]="SNMPv2-SMI::enterprises.259.10.1.27.102.6.2.1.12";
+$mac_root[53]=".1.3.6.1.4.1.259.10.1.27.102.6.1.9.0";
+$port_root[53]=".1.3.6.1.4.1.259.10.1.27.102.6.1.13.0";
+$stp_protocol[53]=".1.3.6.1.4.1.259.10.1.27.102.6.1.2.0";
+$port_ifOperStatus[53] = "ifOperStatus";
+$port_ifInErrors[53] = "ifInErrors";
+$port_ifOutErrors[53] = "ifOutErrors";
+$port_ifType[53] = "ifType";
+$port_sysPortCtrlSpeed[53] = ".1.3.6.1.4.1.259.10.1.27.102.1.13.1.3";
+$port_lbd_global_status[53] = ".1.3.6.1.4.1.259.10.1.27.102.17.1.0";
+$port_lbd_port_status[53] = ".1.3.6.1.4.1.259.10.1.27.102.17.5.1.2";
+$port_lbd_loop_status[53] = ".1.3.6.1.4.1.259.10.1.27.102.17.5.1.3";
+#$swMultiImageVersion[]="1.3.6.1.4.1.259.10.1.27.102.1.31.1.1.0";
+#$tftp_agentBscSwFileAddr[6]="1.3.6.1.4.1.259.10.1.27.102.3.9.1.0";
+#$tftp_agentBscSwFile[6]="1.3.6.1.4.1.259.10.1.27.102.3.9.4.0";
+#$tftp_agentBscSwFileLoadType[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.5.0";
+#$tftp_agentBscSwFileCtrlID[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.2.0";
+#$agentStatusFileTransfer[6]="1.3.6.1.4.1.171.10.76.43.1.3.9.6.0";
+$tftp_agentBscSwFileAddr[53]="1.3.6.1.4.1.171.10.76.43.1.3.1.0";
+$tftp_agentBscSwFile[53]="1.3.6.1.4.1.171.10.76.43.1.3.2.0";
+$tftp_agentBscSwFileLoadType[53]="1.3.6.1.4.1.171.10.76.43.1.3.3.0";
+$agentStatusFileTransfer[53]="1.3.6.1.4.1.171.10.76.43.1.3.4.0";
+
+
+#DGS-3620-28SC
+$wendor_oid[53]="SNMPv2-SMI::enterprises.171.10.118.2";;
+$wendor[53]="DGS-3620-28SC";
+$vlan_name_oid[53]="SNMPv2-SMI::enterprises.171.10.118.2.7.6.1.1";
+$vlan_mgmt_oid[53]="SNMPv2-SMI::enterprises.171.10.118.2.7.3.0";
+$vlan_port_oid[53]=".1.3.6.1.4.1.171.10.118.2.7.6.1";
+$fdb_oid[53]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+$fw[53]="SNMPv2-SMI::mib-2.16.19.2.0";
+$glob_status[53]=".1.3.6.1.4.1.171.10.118.2.6.1.1.0";
+$port_status[53]="SNMPv2-SMI::enterprises.171.10.118.2.6.2.1.2";
+$stp_port_stat[53]="SNMPv2-SMI::enterprises.171.10.118.2.6.2.1.12";
+$mac_root[53]=".1.3.6.1.4.1.171.10.118.2.6.1.9.0";
+$port_root[53]=".1.3.6.1.4.1.171.10.118.2.6.1.13.0";
+$stp_protocol[53]=".1.3.6.1.4.1.171.10.118.2.6.1.2.0";
+$port_ifOperStatus[53] = "ifOperStatus";
+$port_ifInErrors[53] = "ifInErrors";
+$port_ifOutErrors[53] = "ifOutErrors";
+$port_ifType[53] = "ifType";
+$port_sysPortCtrlSpeed[53] = ".1.3.6.1.4.1.171.10.118.2.1.13.1.3";
+$port_lbd_global_status[53] = ".1.3.6.1.4.1.171.10.118.2.17.1.0";
+$port_lbd_port_status[53] = ".1.3.6.1.4.1.171.10.118.2.17.5.1.2";
+$port_lbd_loop_status[53] = ".1.3.6.1.4.1.171.10.118.2.17.5.1.3";
+#$swMultiImageVersion[]="1.3.6.1.4.1.171.10.118.2.1.31.1.1.0";
+#$tftp_agentBscSwFileAddr[6]="1.3.6.1.4.1.171.10.118.2.3.9.1.0";
+#$tftp_agentBscSwFile[6]="1.3.6.1.4.1.171.10.118.2.3.9.4.0";
+#$tftp_agentBscSwFileLoadType[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.5.0";
+#$tftp_agentBscSwFileCtrlID[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.2.0";
+#$agentStatusFileTransfer[6]="1.3.6.1.4.1.171.10.118.2.3.9.6.0";
+$tftp_agentBscSwFileAddr[53]="1.3.6.1.4.1.171.10.118.2.3.1.0";
+$tftp_agentBscSwFile[53]="1.3.6.1.4.1.171.10.118.2.3.2.0";
+$tftp_agentBscSwFileLoadType[53]="1.3.6.1.4.1.171.10.118.2.3.3.0";
+$agentStatusFileTransfer[53]="1.3.6.1.4.1.171.10.118.2.3.4.0";
+
+#DGS-3120-24SC
+$wendor_oid[54]="SNMPv2-SMI::enterprises.171.10.117.1.3";;
+$wendor[54]="DGS-3120-24SC";
+$vlan_name_oid[54]="SNMPv2-SMI::enterprises.171.10.117.1.3.7.6.1.1";
+$vlan_mgmt_oid[54]="SNMPv2-SMI::enterprises.171.10.117.1.3.7.3.0";
+$vlan_port_oid[54]=".1.3.6.1.4.1.171.10.117.1.3.7.6.1";
+$fdb_oid[54]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+$fw[54]="SNMPv2-SMI::mib-2.16.19.2.0";
+$glob_status[54]=".1.3.6.1.4.1.171.10.117.1.3.6.1.1.0";
+$port_status[54]="SNMPv2-SMI::enterprises.171.10.117.1.3.6.2.1.2";
+$stp_port_stat[54]="SNMPv2-SMI::enterprises.171.10.117.1.3.6.2.1.12";
+$mac_root[54]=".1.3.6.1.4.1.171.10.117.1.3.6.1.9.0";
+$port_root[54]=".1.3.6.1.4.1.171.10.117.1.3.6.1.13.0";
+$stp_protocol[54]=".1.3.6.1.4.1.171.10.117.1.3.6.1.2.0";
+$port_ifOperStatus[54] = "ifOperStatus";
+$port_ifInErrors[54] = "ifInErrors";
+$port_ifOutErrors[54] = "ifOutErrors";
+$port_ifType[54] = "ifType";
+$port_sysPortCtrlSpeed[54] = ".1.3.6.1.4.1.171.10.117.1.3.1.13.1.3";
+$port_lbd_global_status[54] = ".1.3.6.1.4.1.171.10.117.1.3.17.1.0";
+$port_lbd_port_status[54] = ".1.3.6.1.4.1.171.10.117.1.3.17.5.1.2";
+$port_lbd_loop_status[54] = ".1.3.6.1.4.1.171.10.117.1.3.17.5.1.3";
+#$swMultiImageVersion[]="1.3.6.1.4.1.171.10.117.1.3.1.31.1.1.0";
+#$tftp_agentBscSwFileAddr[6]="1.3.6.1.4.1.171.10.117.1.3.3.9.1.0";
+#$tftp_agentBscSwFile[6]="1.3.6.1.4.1.171.10.117.1.3.3.9.4.0";
+#$tftp_agentBscSwFileLoadType[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.5.0";
+#$tftp_agentBscSwFileCtrlID[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.2.0";
+#$agentStatusFileTransfer[6]="1.3.6.1.4.1.171.10.118.2.3.9.6.0";
+$tftp_agentBscSwFileAddr[54]="1.3.6.1.4.1.171.10.117.1.3.3.1.0";
+$tftp_agentBscSwFile[54]="1.3.6.1.4.1.171.10.117.1.3.3.2.0";
+$tftp_agentBscSwFileLoadType[54]="1.3.6.1.4.1.171.10.117.1.3.3.3.0";
+$agentStatusFileTransfer[54]="1.3.6.1.4.1.171.10.117.1.3.3.4.0";
+
+#DGS-3420-26SC
+$wendor_oid[55]="SNMPv2-SMI::enterprises.171.10.119.6";;
+$wendor[55]="DGS-3420-26SC";
+$vlan_name_oid[55]="SNMPv2-SMI::enterprises.171.10.119.6.7.6.1.1";
+$vlan_mgmt_oid[55]="SNMPv2-SMI::enterprises.171.10.119.6.7.3.0";
+$vlan_port_oid[55]=".1.3.6.1.4.1.171.10.119.6.7.6.1";
+$fdb_oid[55]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+$fw[55]="SNMPv2-SMI::mib-2.16.19.2.0";
+$glob_status[55]=".1.3.6.1.4.1.171.10.119.6.6.1.1.0";
+$port_status[55]="SNMPv2-SMI::enterprises.171.10.119.6.6.2.1.2";
+$stp_port_stat[55]="SNMPv2-SMI::enterprises.171.10.119.6.6.2.1.12";
+$mac_root[55]=".1.3.6.1.4.1.171.10.119.6.6.1.9.0";
+$port_root[55]=".1.3.6.1.4.1.171.10.119.6.6.1.13.0";
+$stp_protocol[55]=".1.3.6.1.4.1.171.10.119.6.6.1.2.0";
+$port_ifOperStatus[55] = "ifOperStatus";
+$port_ifInErrors[55] = "ifInErrors";
+$port_ifOutErrors[55] = "ifOutErrors";
+$port_ifType[55] = "ifType";
+$port_sysPortCtrlSpeed[55] = ".1.3.6.1.4.1.171.10.119.6.1.13.1.3";
+$port_lbd_global_status[55] = ".1.3.6.1.4.1.171.10.119.6.17.1.0";
+$port_lbd_port_status[55] = ".1.3.6.1.4.1.171.10.119.6.17.5.1.2";
+$port_lbd_loop_status[55] = ".1.3.6.1.4.1.171.10.119.6.17.5.1.3";
+#$swMultiImageVersion[]="1.3.6.1.4.1.171.10.119.6.1.31.1.1.0";
+#$tftp_agentBscSwFileAddr[6]="1.3.6.1.4.1.171.10.119.6.3.9.1.0";
+#$tftp_agentBscSwFile[6]="1.3.6.1.4.1.171.10.119.6.3.9.4.0";
+#$tftp_agentBscSwFileLoadType[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.5.0";
+#$tftp_agentBscSwFileCtrlID[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.2.0";
+#$agentStatusFileTransfer[6]="1.3.6.1.4.1.171.10.118.2.3.9.6.0";
+$tftp_agentBscSwFileAddr[55]="1.3.6.1.4.1.171.10.119.6.3.1.0";
+$tftp_agentBscSwFile[55]="1.3.6.1.4.1.171.10.119.6.3.2.0";
+$tftp_agentBscSwFileLoadType[55]="1.3.6.1.4.1.171.10.119.6.3.3.0";
+$agentStatusFileTransfer[55]="1.3.6.1.4.1.171.10.119.6.3.4.0";
+
+
+#DES-3016
+$wendor_oid[56]="SNMPv2-SMI::enterprises.171.10.63.10";;
+$wendor[56]="DES-3016";
+$vlan_name_oid[56]="SNMPv2-SMI::enterprises.171.10.63.10.7.6.1.1";
+$vlan_mgmt_oid[56]="SNMPv2-SMI::enterprises.171.10.63.10.7.3.0";
+$vlan_port_oid[56]=".1.3.6.1.4.1.171.10.63.10.7.6.1";
+$fdb_oid[56]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+$fw[56]="SNMPv2-SMI::mib-2.16.19.2.0";
+$glob_status[56]=".1.3.6.1.4.1.171.10.63.10.6.1.1.0";
+$port_status[56]="SNMPv2-SMI::enterprises.171.10.63.10.6.2.1.2";
+$stp_port_stat[56]="SNMPv2-SMI::enterprises.171.10.63.10.6.2.1.12";
+$mac_root[56]=".1.3.6.1.4.1.171.10.63.10.6.1.9.0";
+$port_root[56]=".1.3.6.1.4.1.171.10.63.10.6.1.13.0";
+$stp_protocol[56]=".1.3.6.1.4.1.171.10.63.10.6.1.2.0";
+$port_ifOperStatus[56] = "ifOperStatus";
+$port_ifInErrors[56] = "ifInErrors";
+$port_ifOutErrors[56] = "ifOutErrors";
+$port_ifType[56] = "ifType";
+$port_sysPortCtrlSpeed[56] = ".1.3.6.1.4.1.171.10.63.10.1.13.1.3";
+$port_lbd_global_status[56] = ".1.3.6.1.4.1.171.10.63.10.17.1.0";
+$port_lbd_port_status[56] = ".1.3.6.1.4.1.171.10.63.10.17.5.1.2";
+$port_lbd_loop_status[56] = ".1.3.6.1.4.1.171.10.63.10.17.5.1.3";
+#$swMultiImageVersion[]="1.3.6.1.4.1.171.10.119.6.1.31.1.1.0";
+#$tftp_agentBscSwFileAddr[6]="1.3.6.1.4.1.171.10.119.6.3.9.1.0";
+#$tftp_agentBscSwFile[6]="1.3.6.1.4.1.171.10.119.6.3.9.4.0";
+#$tftp_agentBscSwFileLoadType[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.5.0";
+#$tftp_agentBscSwFileCtrlID[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.2.0";
+#$agentStatusFileTransfer[6]="1.3.6.1.4.1.171.10.118.2.3.9.6.0";
+$tftp_agentBscSwFileAddr[56]="1.3.6.1.4.1.171.10.63.10.3.1.0";
+$tftp_agentBscSwFile[56]="1.3.6.1.4.1.171.10.63.10.3.2.0";
+$tftp_agentBscSwFileLoadType[56]="1.3.6.1.4.1.171.10.63.10.3.3.0";
+$agentStatusFileTransfer[56]="1.3.6.1.4.1.171.10.63.10.3.4.0";
+
+
+#S4820-28T-X
+$wendor_oid[57]="SNMPv2-SMI::enterprises.3807.1.482816";;
+$wendor[57]="S4820-28T-X";
+$vlan_name_oid[57]="SNMPv2-SMI::enterprises.3807.1.482816.7.6.1.1";
+$vlan_mgmt_oid[57]="SNMPv2-SMI::enterprises.3807.1.482816.7.3.0";
+$vlan_port_oid[57]=".1.3.6.1.4.1.3807.1.482816.7.6.1";
+$fdb_oid[57]="SNMPv2-SMI::mib-2.17.7.1.2.2.1.2";
+$fw[57]="SNMPv2-SMI::mib-2.16.19.2.0";
+$glob_status[57]=".1.3.6.1.4.1.3807.1.482816.6.1.1.0";
+$port_status[57]="SNMPv2-SMI::enterprises.3807.1.482816.6.2.1.2";
+$stp_port_stat[57]="SNMPv2-SMI::enterprises.3807.1.482816.6.2.1.12";
+$mac_root[57]=".1.3.6.1.4.1.3807.1.482816.6.1.9.0";
+$port_root[57]=".1.3.6.1.4.1.3807.1.482816.6.1.13.0";
+$stp_protocol[57]=".1.3.6.1.4.1.3807.1.482816.6.1.2.0";
+$port_ifOperStatus[57] = "ifOperStatus";
+$port_ifInErrors[57] = "ifInErrors";
+$port_ifOutErrors[57] = "ifOutErrors";
+$port_ifType[57] = "ifType";
+$port_sysPortCtrlSpeed[57] = ".1.3.6.1.4.1.3807.1.482816.1.13.1.3";
+$port_lbd_global_status[57] = ".1.3.6.1.4.1.3807.1.482816.17.1.0";
+$port_lbd_port_status[57] = ".1.3.6.1.4.1.3807.1.482816.17.5.1.2";
+$port_lbd_loop_status[57] = ".1.3.6.1.4.1.3807.1.482816.17.5.1.3";
+#$swMultiImageVersion[]="1.3.6.1.4.1.171.10.119.6.1.31.1.1.0";
+#$tftp_agentBscSwFileAddr[6]="1.3.6.1.4.1.171.10.119.6.3.9.1.0";
+#$tftp_agentBscSwFile[6]="1.3.6.1.4.1.171.10.119.6.3.9.4.0";
+#$tftp_agentBscSwFileLoadType[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.5.0";
+#$tftp_agentBscSwFileCtrlID[6]="1.3.6.1.4.1.171.10.75.15.2.3.9.2.0";
+#$agentStatusFileTransfer[6]="1.3.6.1.4.1.171.10.118.2.3.9.6.0";
+$tftp_agentBscSwFileAddr[57]="1.3.6.1.4.1.3807.1.482816.3.1.0";
+$tftp_agentBscSwFile[57]="1.3.6.1.4.1.3807.1.482816.3.2.0";
+$tftp_agentBscSwFileLoadType[57]="1.3.6.1.4.1.3807.1.482816.3.3.0";
+$agentStatusFileTransfer[57]="1.3.6.1.4.1.3807.1.482816.3.4.0";
+
+?>

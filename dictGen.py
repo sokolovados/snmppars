@@ -2,6 +2,7 @@ from snmpVLAN import snmp
 from pprint import pprint
 from collections import OrderedDict,defaultdict
 import re
+from ipcheck import net_details
 
 # генерирует словарь vlanvlan- port
 def allvlangen(unit): # на входе должен получать файл с snmp выводом по 1 
@@ -15,6 +16,7 @@ def allvlangen(unit): # на входе должен получать файл �
 def untagged(unit,unit1,sysdescr,ip): #на входе получает snmp вывод untagged портов, формирует словарь port:vlan
     untaggedvlan = defaultdict(list)
     taggedvlan = defaultdict(list)
+    ip,mask,gateway = net_details(ip)
     vlanport = {}
     listofport = []
     regexuntagged = (r'(2.17.7.1.4.3.1.4.)(\d+)( = 0x)(\w+)')
@@ -95,7 +97,7 @@ def untagged(unit,unit1,sysdescr,ip): #на входе получает snmp в�
         elif '2352' in model:
             ports = '52'
     
-    vlanport.update({'num':(int(ports)+1)})
+    vlanport.update({'num':(int(ports)+1),'ip':ip, 'mask':mask, 'gateway':gateway})
     return(vlanport)
 
     ##################
