@@ -19,7 +19,7 @@ def net_details(net_details):
     net_details_def_gateway = 10.10.1.1
 
     """
-    net_details = ip.ip_interface(net_details)
+    net_details = ip.IPv4Interface(net_details)
     net_details_ip_prefix = net_details.compressed
     net_details_net = net_details.network.compressed
     net_details_ip = net_details.ip.compressed
